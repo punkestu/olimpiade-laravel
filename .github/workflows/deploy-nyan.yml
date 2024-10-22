@@ -17,5 +17,5 @@ jobs:
           port: ${{ secrets.NYAN_PORT }}
           script: |
             cd repositories/olimpiade-laravel
-            git pull origin v2
+            git pull origin main
             npm run build
