@@ -1,12 +1,27 @@
 <x-layout>
     <x-slot:title>Monitor</x-slot:title>
     <main class="p-4 sm:ml-64">
+        <div class="relative mb-4">
+            <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
+                {{ $summary->user->login_id }}
+            </h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ $summary->user->olimpiade->name }}
+            </p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ $summary->is_focus ? 'Focus' : 'Not Focus' }}
+            </p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ $summary->is_fullscreen ? 'Fullscreen' : 'Not Fullscreen' }}
+            </p>
+        </div>
         <div class="relative">
             <div class="pb-4 flex justify-between items-end">
                 <div class="bg-white dark:bg-gray-900">
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
-                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <div
+                            class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -30,18 +45,18 @@
                                 Olimpiade
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Fokus
+                                Code
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Fullscreen
+                                Kondisi
                             </th>
                             <th scope="col" class="px-6 py-3 text-center">
-                                Aksi
+                                Data tambahan
                             </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                        @foreach ($daftarpantau as $item)
+                        @foreach ($monitor as $item)
                             <tr>
                                 <td class="px-6 py-3">
                                     {{ $item->user->login_id }}
@@ -50,21 +65,20 @@
                                     {{ $item->user->olimpiade->name }}
                                 </td>
                                 <td class="px-6 py-3">
-                                    {{ $item->is_focus ? 'Ya' : 'Tidak' }}
+                                    {{ $item->code }}
                                 </td>
                                 <td class="px-6 py-3">
-                                    {{ $item->is_fullscreen ? 'Ya' : 'Tidak' }}
+                                    {{ $item->message }}
                                 </td>
                                 <td class="px-6 py-3 text-center flex gap-2 justify-center">
-                                    <a href="{{ route('monitor.pantau', $item->user_id) }}"
-                                        class="text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300">Pantau</a>
+                                    {{ $item->data ?? '-' }}
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            @if (count($daftarpantau) == 0)
+            @if (count($monitor) == 0)
                 <div class="flex items-center justify-center h-96">
                     <div class="text-center">
                         <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Tidak ada data</h2>
@@ -74,14 +88,14 @@
             @else
                 <div class="flex justify-end">
                     @if ($offset > 0)
-                        <a href="{{ route('monitor', ['offset' => $offset - 1]) }}"
+                        <a href="{{ route('monitor.pantau', ['id' => $summary->user_id, 'offset' => $offset - 1]) }}"
                             class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             Previous
                         </a>
                     @endif
 
                     <!-- Next Button -->
-                    <a href="{{ route('monitor', ['offset' => $offset + 1]) }}"
+                    <a href="{{ route('monitor.pantau', ['id' => $summary->user_id, 'offset' => $offset + 1]) }}"
                         class="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         Next
                     </a>

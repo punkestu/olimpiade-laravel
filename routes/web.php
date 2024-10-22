@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("/participant/change-password/{id}", [ParticipantController::class, 'updatePassword'])->name('participant.update-password');
 
     Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
+    Route::get("/monitoring/{id}", [MonitorController::class, "pantau"])->name('monitor.pantau');
     Route::get('/quiz', [AnswerController::class, 'quiz'])->name('quiz');
 });
 Route::get("/notifikasi", function () {
