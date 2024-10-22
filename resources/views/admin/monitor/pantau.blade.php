@@ -39,12 +39,6 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                ID
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Olimpiade
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Code
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -58,12 +52,6 @@
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                         @foreach ($monitor as $item)
                             <tr>
-                                <td class="px-6 py-3">
-                                    {{ $item->user->login_id }}
-                                </td>
-                                <td class="px-6 py-3">
-                                    {{ $item->user->olimpiade->name }}
-                                </td>
                                 <td class="px-6 py-3">
                                     {{ $item->code }}
                                 </td>
