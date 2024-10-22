@@ -21,18 +21,14 @@ export function monitor() {
         }
     };
     document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState == "visible") {
-            pushAlert("tab", "visible");
-        } else {
-            pushAlert("tab", "hidden");
-        }
+        pushAlert("tab", document.visibilityState);
     });
     window.onblur = () => {
         pushAlert("tab", "hidden");
-    }
+    };
     window.onfocus = () => {
         pushAlert("tab", "visible");
-    }
+    };
 }
 
 function isFullScreen() {
@@ -42,7 +38,6 @@ function isFullScreen() {
     );
 }
 
-var monitor_stack = JSON.parse(localStorage.getItem("MONITOR")) || [];
 var pusher;
 
 function pushAlert(code, message, data = undefined) {
@@ -53,7 +48,6 @@ function pushAlert(code, message, data = undefined) {
         data = `${data.screenWidth}x${data.screenHeight} ${data.width}x${data.height}`;
     }
     monitor_stack.push({ code, message, data });
-    localStorage.setItem("MONITOR", JSON.stringify(monitor_stack));
     if (!pusher) {
         pusher = setTimeout(() => {
             fetch("/api/monitor", {
@@ -67,12 +61,7 @@ function pushAlert(code, message, data = undefined) {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
                     monitor_stack = [];
-                    localStorage.setItem(
-                        "MONITOR",
-                        JSON.stringify(monitor_stack)
-                    );
                     pusher = undefined;
                 })
                 .catch((error) => console.error(error));
@@ -111,9 +100,6 @@ function initial() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            monitor_stack = [];
-            localStorage.setItem("MONITOR", JSON.stringify(monitor_stack));
-            pusher = undefined;
         })
         .catch((error) => console.error(error));
 }
