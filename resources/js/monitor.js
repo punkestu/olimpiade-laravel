@@ -28,6 +28,7 @@ export function monitor() {
         }
     });
     window.addEventListener("beforeunload", () => {
+        document.querySelector("form").innerHTML += "Inactive";
         pushAlert("tab", "hidden");
     })
 }
