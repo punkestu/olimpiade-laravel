@@ -38,6 +38,7 @@ function isFullScreen() {
     );
 }
 
+var monitor_stack = [];
 var pusher;
 
 function pushAlert(code, message, data = undefined) {
