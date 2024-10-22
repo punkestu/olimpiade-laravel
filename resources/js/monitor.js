@@ -28,9 +28,13 @@ export function monitor() {
         }
     });
     window.addEventListener("beforeunload", () => {
-        document.querySelector("form").innerHTML += "Inactive";
+        // document.querySelector("form").innerHTML += "Inactive";
+        localStorage.setItem("FOOTPRINT", "Inactive");
         pushAlert("tab", "hidden");
-    })
+    });
+    if (localStorage.getItem("FOOTPRINT")) {
+        document.querySelector("form").innerHTML += "Inactive";
+    }
 }
 
 function isFullScreen() {
