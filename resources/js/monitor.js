@@ -27,10 +27,6 @@ export function monitor() {
             pushAlert("tab", "hidden");
         }
     });
-    window.addEventListener("beforeunload", () => {
-        localStorage.setItem("FOOTPRINT", "Inactive");
-        pushAlert("tab", "hidden");
-    });
 }
 
 function isFullScreen() {
@@ -79,10 +75,6 @@ function pushAlert(code, message, data = undefined) {
 }
 
 function initial() {
-    document.querySelector("main").innerHTML += `<div id="footprint">${localStorage.getItem(
-        "FOOTPRINT"
-    )}</div>`;
-    localStorage.removeItem("FOOTPRINT");
     if (!localStorage.getItem("API_TOKEN")) {
         window.location.href = "/login";
     }
