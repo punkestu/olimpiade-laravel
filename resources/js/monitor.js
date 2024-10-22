@@ -70,7 +70,7 @@ function pushAlert(code, message, data = undefined) {
                     pusher = undefined;
                 })
                 .catch((error) => console.error(error));
-        }, 10000);
+        }, 1000);
     }
 }
 
