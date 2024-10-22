@@ -206,7 +206,7 @@
 
         var token;
         if (!localStorage.getItem("API_TOKEN")) {
-            fetchToken();
+            requestToken();
         } else {
             token = localStorage.getItem("API_TOKEN");
         }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\OlimpiadeController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\QuestionController;
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/participant/change-password/{id}", [ParticipantController::class, 'changePassword'])->name('participant.change-password');
     Route::post("/participant/change-password/{id}", [ParticipantController::class, 'updatePassword'])->name('participant.update-password');
 
+    Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
     Route::get('/quiz', [AnswerController::class, 'quiz'])->name('quiz');
 });
 Route::get("/notifikasi", function () {

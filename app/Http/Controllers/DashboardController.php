@@ -25,6 +25,6 @@ class DashboardController extends Controller
 
     private function adminDashboard()
     {
-        return view('admin.dashboard');
+        return redirect()->route('olimpiade.index');
     }
 }
