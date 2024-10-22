@@ -28,13 +28,9 @@ export function monitor() {
         }
     });
     window.addEventListener("beforeunload", () => {
-        // document.querySelector("form").innerHTML += "Inactive";
         localStorage.setItem("FOOTPRINT", "Inactive");
         pushAlert("tab", "hidden");
     });
-    if (localStorage.getItem("FOOTPRINT")) {
-        document.querySelector("form").innerHTML += "Inactive";
-    }
 }
 
 function isFullScreen() {
@@ -83,6 +79,10 @@ function pushAlert(code, message, data = undefined) {
 }
 
 function initial() {
+    document.querySelector("main").innerHTML += `<div id="footprint">${localStorage.getItem(
+        "FOOTPRINT"
+    )}</div>`;
+    localStorage.removeItem("FOOTPRINT");
     if (!localStorage.getItem("API_TOKEN")) {
         window.location.href = "/login";
     }
