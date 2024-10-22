@@ -1,0 +1,21 @@
+name: CD
+run-name: Running deployment 🚀
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.NYAN_HOST }}
+          username: ${{ secrets.NYAN_USERNAME }}
+          key: ${{ secrets.NYAN_SECRET }}
+          port: ${{ secrets.NYAN_PORT }}
+          script: |
+            cd repositories/olimpiade-laravel
+            git pull origin v2
+            npm run build
