@@ -20,13 +20,16 @@ export function monitor() {
             });
         }
     };
-    document.addEventListener("visibilitychange", (event) => {
+    document.addEventListener("visibilitychange", () => {
         if (document.visibilityState == "visible") {
             pushAlert("tab", "visible");
         } else {
             pushAlert("tab", "hidden");
         }
     });
+    window.addEventListener("beforeunload", () => {
+        pushAlert("tab", "hidden");
+    })
 }
 
 function isFullScreen() {
