@@ -19,4 +19,9 @@ class Olimpiade extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function participants()
+    {
+        return $this->hasMany(User::class);
+    }
 }

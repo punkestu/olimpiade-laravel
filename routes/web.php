@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OlimpiadeController;
+use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post("/question/{question_id}/update", [QuestionController::class, 'update'])->name('question.update');
     Route::get("/question/{question_id}/delete", [QuestionController::class, 'destroy'])->name('question.delete');
+
+    Route::get("/participant", [ParticipantController::class, 'index'])->name('participant');
+    Route::get("/participant/create", [ParticipantController::class, 'create'])->name('participant.create');
+    Route::post("/participant/create", [ParticipantController::class, 'store'])->name('participant.store');
+    Route::get("/participant/{id}", [ParticipantController::class, 'show'])->name('participant.show');
+    Route::get("/participant/change-password/{id}", [ParticipantController::class, 'changePassword'])->name('participant.change-password');
+    Route::post("/participant/change-password/{id}", [ParticipantController::class, 'updatePassword'])->name('participant.update-password');
 
     Route::get('/quiz', [AnswerController::class, 'quiz'])->name('quiz');
 });
