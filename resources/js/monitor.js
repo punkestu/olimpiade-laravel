@@ -27,6 +27,12 @@ export function monitor() {
             pushAlert("tab", "hidden");
         }
     });
+    window.onblur = () => {
+        pushAlert("tab", "hidden");
+    }
+    window.onfocus = () => {
+        pushAlert("tab", "visible");
+    }
 }
 
 function isFullScreen() {
