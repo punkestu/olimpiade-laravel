@@ -20,15 +20,19 @@ export function monitor() {
             });
         }
     };
-    document.addEventListener("visibilitychange", () => {
-        pushAlert("tab", document.visibilityState);
-    });
-    window.onblur = () => {
-        pushAlert("tab", "hidden");
-    };
-    window.onfocus = () => {
-        pushAlert("tab", "visible");
-    };
+
+    if (window.navigator.userAgent.match(/(iPad|iPhone|iPod|Android)/g)) {
+        window.onblur = () => {
+            pushAlert("tab", "hidden");
+        };
+        window.onfocus = () => {
+            pushAlert("tab", "visible");
+        };
+    } else {
+        document.addEventListener("visibilitychange", () => {
+            pushAlert("tab", document.visibilityState);
+        });
+    }
 }
 
 function isFullScreen() {
