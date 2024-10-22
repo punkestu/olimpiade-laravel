@@ -9,7 +9,7 @@
                 {{ $summary->user->olimpiade->name }}
             </p>
             <p class="text-sm text-gray-500 dark:text-gray-400">
-                {{ $summary->is_focus ? 'Focus' : 'Not Focus' }}
+                {{ $summary->is_focused ? 'Focus' : 'Not Focus' }}
             </p>
             <p class="text-sm text-gray-500 dark:text-gray-400">
                 {{ $summary->is_fullscreen ? 'Fullscreen' : 'Not Fullscreen' }}

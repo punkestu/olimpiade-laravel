@@ -50,7 +50,7 @@
                                     {{ $item->user->olimpiade->name }}
                                 </td>
                                 <td class="px-6 py-3">
-                                    {{ $item->is_focus ? 'Ya' : 'Tidak' }}
+                                    {{ $item->is_focused ? 'Ya' : 'Tidak' }}
                                 </td>
                                 <td class="px-6 py-3">
                                     {{ $item->is_fullscreen ? 'Ya' : 'Tidak' }}
