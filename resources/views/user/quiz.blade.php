@@ -315,7 +315,11 @@
         if (questions.length === 0) {
             document.getElementById('question').innerHTML = '<h1 class="text-2xl">Tidak ada soal</h1>';
         } else {
-            setQuestion(0);
+            if (localStorage.getItem('currQuestion')) {
+                currQuestion = parseInt(localStorage.getItem('currQuestion'));
+            }
+            setQuestion(currQuestion);
+            buttonController(currQuestion);
         }
     </script>
     <script>
