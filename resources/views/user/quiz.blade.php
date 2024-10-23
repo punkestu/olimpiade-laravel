@@ -1,6 +1,5 @@
 <x-layout>
     <x-slot:title>Dashboard</x-slot:title>
-    {{-- <x-slot:hidenavbar></x-slot:hidenavbar> --}}
     <main class="p-4 min-h-[100vh] flex gap-4">
         <div class="text-center fixed bottom-2 right-2 block md:hidden">
             <button
@@ -67,7 +66,7 @@
             <div class="flex flex-row-reverse justify-between">
                 <button
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center gap-1 hidden"
-                    id="done-btn" data-modal-target="loading-modal" data-modal-toggle="loading-modal">
+                    id="done-btn" data-modal-target="confirmation-modal" data-modal-toggle="confirmation-modal">
                     Selesai
                     <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -132,7 +131,7 @@
         </aside>
     </main>
 
-    <div id="loading-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+    <div id="confirmation-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <!-- Modal content -->
@@ -144,7 +143,7 @@
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="loading-modal">
+                        data-modal-hide="confirmation-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -164,10 +163,10 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="loading-modal" type="button"
+                    <button data-modal-hide="confirmation-modal" type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         onclick="submitAnswer()">Selesaikan</button>
-                    <button data-modal-hide="loading-modal" type="button"
+                    <button data-modal-hide="confirmation-modal" type="button"
                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cek
                         ulang</button>
                 </div>
@@ -301,6 +300,9 @@
             document.querySelector('#answer2-content > #content').innerHTML = question.answer2;
             document.querySelector('#answer3-content > #content').innerHTML = question.answer3;
             document.querySelector('#answer4-content > #content').innerHTML = question.answer4;
+
+            document.querySelector("#question-num-drawer-" + question.id).checked = true;
+            document.querySelector("#question-num-" + question.id).checked = true;
         }
 
         function setAnswer(answer) {
