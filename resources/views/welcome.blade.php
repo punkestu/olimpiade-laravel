@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Welcome</x-slot:title>
     <div id="shade" class="absolute top-0 z-[1000] bg-white w-screen h-screen flex items-center justify-center duration-1000">
-        <img src="/image/loading.gif" alt="icon" class="w-48">
+        <img src="/image/loading.gif" alt="icon" class="w-64">
     </div>
     <main class="py-4">
         <section class="px-8 flex justify-center items-center gap-8">
