@@ -73,7 +73,7 @@ class OlimpiadeController extends Controller
         $data['end_date'] = Carbon::parse($request->end_date . ' ' . $request->end_time)->format("Y-m-d H:i:s");
         $data['slug'] = Str::slug($request->name);
         Olimpiade::create($data);
-        return redirect()->route('olimpiade.index');
+        return redirect()->route('olimpiade.index')->with('success', 'Olimpiade berhasil ditambahkan');
     }
 
     /**
@@ -144,7 +144,7 @@ class OlimpiadeController extends Controller
         $data['end_date'] = Carbon::parse($request->end_date . ' ' . $request->end_time, "Asia/Jakarta")->format("Y-m-d H:i:s");
         $data['slug'] = Str::slug($request->name);
         Olimpiade::find($olimpiade->id)->update($data);
-        return redirect()->route('olimpiade.index');
+        return redirect()->route('olimpiade.index')->with('success', 'Olimpiade berhasil diubah');
     }
 
     /**

@@ -121,6 +121,7 @@
             @endif
         </div>
     </main>
+    @include('components.success')
     <script>
         function searchOlimpiade(searchInput) {
             const rows = document.querySelectorAll('tbody tr');

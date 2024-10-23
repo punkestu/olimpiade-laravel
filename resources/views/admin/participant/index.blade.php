@@ -207,6 +207,7 @@
             </div>
         </div>
     </div>
+    @include('components.success')
     <script>
         function setDeleteUrl(id) {
             document.querySelector('#confirmation-modal a').href = `/participant/${id}/delete`;

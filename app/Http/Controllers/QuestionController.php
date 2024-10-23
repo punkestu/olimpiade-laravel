@@ -36,7 +36,7 @@ class QuestionController extends Controller
 
         Question::create($data);
 
-        return redirect()->route('olimpiade.show', $data['olimpiade_id']);
+        return redirect()->back()->with('success', 'Soal berhasil ditambahkan');
     }
 
     /**
@@ -65,7 +65,7 @@ class QuestionController extends Controller
         $question = Question::find($question_id);
         $question->update($request->all());
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Soal berhasil diubah');
     }
 
     /**
@@ -75,6 +75,6 @@ class QuestionController extends Controller
     {
         Question::destroy($question_id);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Soal berhasil dihapus');
     }
 }

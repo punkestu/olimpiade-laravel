@@ -178,6 +178,7 @@
         @include('admin.olimpiade.question.show')
         @include('admin.olimpiade.question.edit')
     @endif
+    @include('components.success')
     @include('components.errors')
     <script>
         function setDeleteUrl(id) {
