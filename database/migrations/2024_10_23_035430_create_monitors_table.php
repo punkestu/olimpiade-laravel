@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitor_summaries', function (Blueprint $table) {
+        Schema::create('monitors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained();
-            $table->boolean("is_focused")->default(true);
-            $table->boolean("is_fullscreen")->default(false);
-            $table->string("screen_window_size")->default("1024x768 1024x768");
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('code');
+            $table->string('message');
+            $table->string('data')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitor_summaries');
+        Schema::dropIfExists('monitors');
     }
 };

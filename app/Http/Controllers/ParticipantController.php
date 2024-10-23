@@ -73,4 +73,12 @@ class ParticipantController extends Controller
 
         return redirect()->route('participant')->with('success', 'Password berhasil diubah');
     }
+
+    public function destroy($id)
+    {
+        $participant = User::find($id);
+        $participant->delete();
+
+        return redirect()->route('participant')->with('success', 'Peserta berhasil dihapus');
+    }
 }
