@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Container\Attributes\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -25,6 +28,8 @@ class User extends Authenticatable
         'role',
         'olimpiade_id',
         'login_id',
+        'finish',
+        'poin'
     ];
 
     /**
@@ -40,6 +45,17 @@ class User extends Authenticatable
     public function olimpiade()
     {
         return $this->belongsTo(Olimpiade::class);
+    }
+
+    public function point()
+    {
+        /*return FacadesDB::table('answers')
+            ->select(FacadesDB::raw('COALESCE(SUM(poin), 0) as total'))
+            ->join('questions', 'answers.question_id', '=', 'questions.id')
+            ->where('user_id', $this->id)
+            ->where('correct_answer', "=", 'answer')
+            ->first();*/
+        return $this->hasMany(Answer::class)->join('questions', 'question_id', '=', 'questions.id')->where('questions.correct_answer', FacadesDB::raw('answers.answer'));
     }
 
     /**

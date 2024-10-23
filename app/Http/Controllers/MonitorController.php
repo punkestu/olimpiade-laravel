@@ -13,14 +13,14 @@ class MonitorController extends Controller
     public function index(Request $request)
     {
         $offset = $request->query("offset", 0);
-        $daftarpantau = MonitorSummary::limit(10)->offset($offset * 10)->get();
+        $daftarpantau = MonitorSummary::with(["user" => ["olimpiade"]])->limit(10)->offset($offset * 10)->get();
         return view("admin.monitor.index", ["offset" => $offset, "daftarpantau" => $daftarpantau]);
     }
 
     public function pantau($id, Request $request)
     {
         $offset = $request->query("offset", 0);
-        $monitor = Monitor::where("user_id", $id)->orderBy("created_at", "desc")->limit(10)->offset($offset)->get();
+        $monitor = Monitor::with(["user"])->where("user_id", $id)->orderBy("created_at", "desc")->limit(10)->offset($offset)->get();
         $summary = MonitorSummary::where("user_id", $id)->first();
         return view("admin.monitor.pantau", ["monitor" => $monitor, 'summary' => $summary, "offset" => $offset, "pantau" => $id]);
     }

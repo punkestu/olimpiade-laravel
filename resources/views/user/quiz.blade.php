@@ -191,7 +191,20 @@
                             answer: item
                         }) : null).filter(item => item)
                     )
-                }).then(res => res.json())
+                }).then(res => res.json()).then(res => {
+                    fetch("/api/finish", {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }).then(res => res.json()).then(res => {
+                        if (res.code === 200) {
+                            localStorage.removeItem("API_TOKEN");
+                            localStorage.removeItem("answers");
+                            localStorage.removeItem("currQuestion");
+                            window.location.href = "/dashboard";
+                        }
+                    });
+                })
             }
         }
 

@@ -54,6 +54,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Olimpiade
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nilai
+                            </th>
                             <th scope="col" class="px-6 py-3 text-center">
                                 Aksi
                             </th>
@@ -72,6 +75,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $participant->olimpiade->name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $participant->point->sum('poin') }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex justify-center gap-2">
                                     <a href="{{ route('participant.show', $participant->id) }}"

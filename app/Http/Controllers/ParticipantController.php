@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Olimpiade;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ParticipantController extends Controller
@@ -14,10 +15,10 @@ class ParticipantController extends Controller
         $olimpiade_filter = Olimpiade::find($request->olimpiade);
         $olimpiades = Olimpiade::all();
         if ($request->olimpiade && $olimpiade_filter) {
-            $participants = User::where('role', 'user')->where('olimpiade_id', $request->olimpiade)->get();
+            $participants = User::with(["point", "olimpiade"])->where('role', 'user')->where('olimpiade_id', $request->olimpiade)->get();
             $olimpiade_filter = $olimpiade_filter->name;
         } else {
-            $participants = User::where('role', 'user')->get();
+            $participants = User::with(["point", "olimpiade"])->where('role', 'user')->get();
         }
         return view('admin.participant.index', compact('participants', 'olimpiade_filter', 'olimpiades'));
     }

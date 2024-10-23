@@ -14,7 +14,7 @@ class OlimpiadeController extends Controller
      */
     public function index()
     {
-        $olimpiades = Olimpiade::all();
+        $olimpiades = Olimpiade::with(["participants"])->get();
         foreach ($olimpiades as $olimpiade) {
             $olimpiade->start_date = Carbon::parse($olimpiade->start_date, 'Asia/Jakarta')->format('d/m/Y H:i');
         }
