@@ -60,18 +60,18 @@
                                     {{ $olimpiade->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ explode(' ', $olimpiade->start_date)[0] }}
+                                    {{ $olimpiade->start_date->format('d F Y') }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $olimpiade->participants->count() }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    @if (now() > $olimpiade->end_date)
+                                    @if ($now->gt($olimpiade->end_date))
                                         <span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-700 dark:text-red-100">
                                             Selesai
                                         </span>
-                                    @elseif (now() < $olimpiade->start_date)
+                                    @elseif (now()->lt($olimpiade->start_date))
                                         <span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-100">
                                             Belum Dimulai

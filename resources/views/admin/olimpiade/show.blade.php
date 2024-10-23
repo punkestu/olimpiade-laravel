@@ -7,9 +7,9 @@
         </div>
         <h1 class="mt-2 text-5xl font-bold">{{ $olimpiade->name }}</h1>
         <div class="mt-2 flex gap-2 px-2 py-1 bg-slate-200 w-fit rounded-md">
-            <p class="font-semibold">{{ $olimpiade->start_date }} <span>{{ $olimpiade->start_time }}</span></p>
+            <p class="font-semibold">{{ $olimpiade->start_date->format("d F Y H:i") }}</span></p>
             <p>-</p>
-            <p class="font-semibold">{{ $olimpiade->end_date }} <span>{{ $olimpiade->end_time }}</span></p>
+            <p class="font-semibold">{{ $olimpiade->end_date->format("d F Y H:i") }}</p>
         </div>
         <div class="mt-2 [&_ul]:pl-4 [&_ul]:list-disc [&_ol]:pl-4 [&_ol]:list-decimal">
             {!! $olimpiade->description !!}

@@ -16,9 +16,11 @@ class OlimpiadeController extends Controller
     {
         $olimpiades = Olimpiade::with(["participants"])->get();
         foreach ($olimpiades as $olimpiade) {
-            $olimpiade->start_date = Carbon::parse($olimpiade->start_date, 'Asia/Jakarta')->format('d/m/Y H:i');
+            $olimpiade->start_date = Carbon::parse($olimpiade->start_date, 'Asia/Jakarta');
+            $olimpiade->end_date = Carbon::parse($olimpiade->end_date, 'Asia/Jakarta');
         }
-        return view('admin.olimpiade.index', compact('olimpiades'));
+        $now = Carbon::now('Asia/Jakarta');
+        return view('admin.olimpiade.index', compact('olimpiades', 'now'));
     }
 
     /**
@@ -67,8 +69,8 @@ class OlimpiadeController extends Controller
             $data['image'] = $request->file('image')->store('olimpiade', 'public');
         else
             $data['image'] = 'olimpiade/default.jpg';
-        $data['start_date'] = date_format(date_create_from_format('d/m/Y H:i', $request->start_date . ' ' . $request->start_time), 'Y-m-d H:i:s');
-        $data['end_date'] = date_format(date_create_from_format('d/m/Y H:i', $request->end_date . ' ' . $request->end_time), 'Y-m-d H:i:s');
+        $data['start_date'] = Carbon::parse($request->start_date . ' ' . $request->start_time)->format("Y-m-d H:i:s");
+        $data['end_date'] = Carbon::parse($request->end_date . ' ' . $request->end_time)->format("Y-m-d H:i:s");
         $data['slug'] = Str::slug($request->name);
         Olimpiade::create($data);
         return redirect()->route('olimpiade.index');
@@ -81,6 +83,8 @@ class OlimpiadeController extends Controller
     {
         $olimpiade = Olimpiade::with(["questions"])->find($olimpiade->id);
         if ($olimpiade == null) return abort(404);
+        $olimpiade->start_date = Carbon::parse($olimpiade->start_date, 'Asia/Jakarta');
+        $olimpiade->end_date = Carbon::parse($olimpiade->end_date, 'Asia/Jakarta');
         return view('admin.olimpiade.show', compact('olimpiade'));
     }
 
@@ -91,10 +95,12 @@ class OlimpiadeController extends Controller
     {
         $olimpiade = Olimpiade::find($olimpiade->id);
         if ($olimpiade == null) return abort(404);
-        $olimpiade["start_time"] = date_format(date_create($olimpiade->start_date), 'H:i');
-        $olimpiade["start_date"] = date_format(date_create($olimpiade->start_date), 'd/m/Y');
-        $olimpiade["end_time"] = date_format(date_create($olimpiade->end_date), 'H:i');
-        $olimpiade["end_date"] = date_format(date_create($olimpiade->end_date), 'd/m/Y');
+        $start_date = Carbon::parse($olimpiade->start_date);
+        $end_date = Carbon::parse($olimpiade->end_date);
+        $olimpiade["start_time"] = $start_date->format('H:i');
+        $olimpiade["start_date"] = $start_date->format('m/d/Y');
+        $olimpiade["end_time"] = $end_date->format('H:i');
+        $olimpiade["end_date"] = $end_date->format('m/d/Y');
         return view('admin.olimpiade.edit', compact('olimpiade'));
     }
 
@@ -134,8 +140,8 @@ class OlimpiadeController extends Controller
         ]);
         if ($request->hasFile('image'))
             $data['image'] = $request->file('image')->store('olimpiade', 'public');
-        $data['start_date'] = date_format(date_create_from_format('d/m/Y H:i', $request->start_date . ' ' . $request->start_time), 'Y-m-d H:i:s');
-        $data['end_date'] = date_format(date_create_from_format('d/m/Y H:i', $request->end_date . ' ' . $request->end_time), 'Y-m-d H:i:s');
+        $data['start_date'] = Carbon::parse($request->start_date . ' ' . $request->start_time, "Asia/Jakarta")->format("Y-m-d H:i:s");
+        $data['end_date'] = Carbon::parse($request->end_date . ' ' . $request->end_time, "Asia/Jakarta")->format("Y-m-d H:i:s");
         $data['slug'] = Str::slug($request->name);
         Olimpiade::find($olimpiade->id)->update($data);
         return redirect()->route('olimpiade.index');
