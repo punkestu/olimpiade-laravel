@@ -20,13 +20,14 @@ class RegisterController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|confirmed',
             'category' => 'required|exists:olimpiades,id',
         ], [
             'name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Email tidak valid',
             'password.required' => 'Password harus diisi',
+            'password.confirmed' => 'Password tidak sama',
             'category.required' => 'Kategori harus diisi',
             'category.exists' => 'Kategori tidak valid',
         ]);

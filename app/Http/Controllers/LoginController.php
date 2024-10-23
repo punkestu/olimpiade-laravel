@@ -48,7 +48,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'login_id' => 'The provided credentials do not match our records.',
+            'login_id' => 'ID atau password salah.',
         ])->onlyInput('login_id');
     }
 }
