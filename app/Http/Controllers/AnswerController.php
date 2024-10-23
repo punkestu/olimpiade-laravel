@@ -14,7 +14,7 @@ class AnswerController extends Controller
 {
     public function quiz()
     {
-        if(Auth::user()->finish) {
+        if (Auth::user()->role == 'admin' || Auth::user()->finish) {
             return redirect()->route('dashboard');
         }
         $questions = Question::select(['id', 'question', 'answer1', 'answer2', 'answer3', 'answer4'])
