@@ -20,7 +20,7 @@
             @endif
         </div>
     </main>
-    @if (now() < $olimpiade->start_date)
+    @if ($now->lt($olimpiade->start_date))
         <script>
             const startDate = new Date('{{ $olimpiade->start_date }}').getTime();
             const countDown = document.getElementById('countdown');

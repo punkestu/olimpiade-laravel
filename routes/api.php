@@ -13,5 +13,6 @@ Route::get('/user', function (Request $request) {
 Route::post("/requesttoken", [LoginController::class, "getToken"]);
 Route::post("/monitor", [MonitorController::class, "listen"])->middleware('auth:sanctum');
 
+Route::get("/time", [AnswerController::class, "peekExpandTime"])->middleware('auth:sanctum');
 Route::get("/finish", [AnswerController::class, "finish"])->middleware('auth:sanctum');
 Route::post("/answer", [AnswerController::class, "submit"])->middleware('auth:sanctum');

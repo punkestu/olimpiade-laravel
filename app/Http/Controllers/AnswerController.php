@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,27 @@ class AnswerController extends Controller
         if (Auth::user()->role == 'admin' || Auth::user()->finish) {
             return redirect()->route('dashboard');
         }
+        $start_time = Carbon::parse(Auth::user()->olimpiade->start_date, 'Asia/Jakarta');
+        $end_time = Carbon::parse(Auth::user()->olimpiade->end_date, 'Asia/Jakarta');
+        if (Carbon::now('Asia/Jakarta')->lt($start_time) || Carbon::now('Asia/Jakarta')->gt($end_time)) {
+            return redirect()->route('dashboard');
+        }
         $questions = Question::select(['id', 'question', 'answer1', 'answer2', 'answer3', 'answer4'])
             ->where('olimpiade_id', Auth::user()->olimpiade->id)->get();
-        return view('user.quiz', compact('questions'));
+        return view('user.quiz', compact('questions', 'start_time', 'end_time'));
+    }
+
+    public function peekExpandTime()
+    {
+        $start_time = Carbon::parse(Auth::user()->olimpiade->start_date, 'Asia/Jakarta');
+        $end_time = Carbon::parse(Auth::user()->olimpiade->end_date, 'Asia/Jakarta');
+        return response()->json([
+            "code" => 200,
+            "data" => [
+                "start_time" => $start_time->format('Y-m-d H:i:s'),
+                "end_time" => $end_time->format('Y-m-d H:i:s')
+            ]
+        ]);
     }
 
     public function submit(Request $request)

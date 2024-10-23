@@ -165,7 +165,7 @@
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button data-modal-hide="confirmation-modal" type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onclick="submitAnswer()">Selesaikan</button>
+                        onclick="submitAnswer(true)">Selesaikan</button>
                     <button data-modal-hide="confirmation-modal" type="button"
                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cek
                         ulang</button>
@@ -175,8 +175,8 @@
     </div>
 
     <script>
-        function submitAnswer() {
-            if (token && answers.filter(item => item).length !== 0) {
+        function submitAnswer(finish = false) {
+            if (token && (answers.filter(item => item).length !== 0 || finish)) {
                 fetch("/api/answer", {
                     method: 'POST',
                     headers: {
@@ -191,18 +191,20 @@
                         }) : null).filter(item => item)
                     )
                 }).then(res => res.json()).then(res => {
-                    fetch("/api/finish", {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    }).then(res => res.json()).then(res => {
-                        if (res.code === 200) {
-                            localStorage.removeItem("API_TOKEN");
-                            localStorage.removeItem("answers");
-                            localStorage.removeItem("currQuestion");
-                            window.location.href = "/dashboard";
-                        }
-                    });
+                    if (res.code === 200 && finish) {
+                        fetch("/api/finish", {
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        }).then(res => res.json()).then(res => {
+                            if (res.code === 200) {
+                                localStorage.removeItem("API_TOKEN");
+                                localStorage.removeItem("answers");
+                                localStorage.removeItem("currQuestion");
+                                window.location.href = "/dashboard";
+                            }
+                        });
+                    }
                 })
             }
         }
@@ -323,13 +325,48 @@
         }
     </script>
     <script>
-        var ticker = 0;
+        const startTime = new Date('{{ $start_time }}').getTime();
+        var endTime = new Date('{{ $end_time }}').getTime();
+        const duration = endTime - startTime;
+        var checking = false;
         setInterval(() => {
-            if (ticker <= 100) {
-                const offset = 251.2 - (251.2 * (100 - ticker)) / 100;
-                document.querySelector("#radial-timer > #outer").setAttribute("stroke-dashoffset", offset);
-                ticker++;
+            if (new Date().getTime() > endTime) {
+                if (!checking) {
+                    recheckTime();
+                }
+            } else {
+                setTimer();
             }
         }, 1000);
+
+        function setTimer() {
+            const timeRemaining = endTime - new Date().getTime();
+            const percentage = (timeRemaining / duration) * 100;
+            const offset = 251.2 - (251.2 * (percentage)) / 100;
+            document.querySelector("#radial-timer > #outer").setAttribute("stroke-dashoffset", offset);
+            document.querySelector("#radial-timer > text").innerHTML = new Date(timeRemaining).toISOString().split("T")[1]
+                .substr(0, 8);
+            document.getElementById('timer').innerHTML = new Date(timeRemaining).toISOString().split("T")[1].substr(0, 8);
+        }
+
+        function recheckTime() {
+            checking = true;
+            fetch("/api/time", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(res => res.json()).then(res => {
+                if (res.code === 200) {
+                    endTime = new Date(res.data.end_time).getTime();
+                }
+                if (new Date().getTime() > endTime) {
+                    console.log("Waktu habis");
+                    submitAnswer(true);
+                } else {
+                    checking = false;
+                }
+            });
+        }
+        setTimer();
     </script>
 </x-layout>
