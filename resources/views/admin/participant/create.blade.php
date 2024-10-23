@@ -13,7 +13,7 @@
                 @csrf
                 <div class="border-t border-gray-200 dark:border-gray-700">
                     <dl>
-                        <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 flex items-center sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Nama</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 <input type="text" name="name" id="name"
@@ -21,7 +21,7 @@
                                     required>
                             </dd>
                         </div>
-                        <div class="bg-white dark:bg-gray-800 px-4 py-5 flex items-center sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Email</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 <input type="email" name="email" id="email"
@@ -29,7 +29,7 @@
                                     required>
                             </dd>
                         </div>
-                        <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 flex items-center sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Olimpiade</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 flex gap-2 items-center">
                                 <input type="hidden" name="olimpiade_id" value="">

@@ -15,8 +15,8 @@
             {!! $olimpiade->description !!}
         </div>
         <div class="mt-6 relative">
-            <div class="pb-4 flex justify-between items-end">
-                <div class="bg-white dark:bg-gray-900">
+            <div class="pb-4 flex flex-col md:flex-row justify-between items-end gap-2">
+                <div class="bg-white dark:bg-gray-900 w-full md:w-auto">
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
                         <div
@@ -28,7 +28,7 @@
                             </svg>
                         </div>
                         <input type="text" id="table-search"
-                            class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for items" onkeyup="searchQuestion(this)">
                     </div>
                 </div>
@@ -87,8 +87,8 @@
                                 <td class="px-6 py-4 text-right flex justify-center gap-2">
                                     <button onclick='setQuestion({{ $loop->iteration }}, @json($question))'
                                         data-modal-target="show-modal" data-modal-toggle="show-modal"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center text-center">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-width="2"
@@ -99,8 +99,8 @@
                                         Detail</button>
                                     <button data-modal-target="edit-modal" data-modal-toggle="edit-modal"
                                         onclick='setQuestion({{ $loop->iteration }}, @json($question))'
-                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 flex items-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
+                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 flex items-center text-center">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -111,8 +111,8 @@
                                     <button data-modal-target="confirmation-modal"
                                         data-modal-toggle="confirmation-modal"
                                         onclick="setDeleteUrl({{ $question->id }})"
-                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 flex items-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
+                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 flex items-center text-center">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round"
