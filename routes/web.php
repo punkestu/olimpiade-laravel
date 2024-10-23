@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/participant/{id}", [ParticipantController::class, 'show'])->name('participant.show');
     Route::get("/participant/change-password/{id}", [ParticipantController::class, 'changePassword'])->name('participant.change-password');
     Route::post("/participant/change-password/{id}", [ParticipantController::class, 'updatePassword'])->name('participant.update-password');
+    Route::get("/participant/{id}/delete", [ParticipantController::class, 'destroy'])->name('participant.delete');
 
     Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
     Route::get("/monitoring/{id}", [MonitorController::class, "pantau"])->name('monitor.pantau');
