@@ -8,6 +8,7 @@ use App\Http\Controllers\OlimpiadeController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
     Route::get("/monitoring/{id}", [MonitorController::class, "pantau"])->name('monitor.pantau');
     Route::get('/quiz', [AnswerController::class, 'quiz'])->name('quiz');
+
+    Route::get("/setting", [SettingController::class, 'index'])->name('setting');
+    Route::get("/setting/change-password", [SettingController::class, 'changePassword'])->name('setting.change-password');
+    Route::post("/setting/change-password", [SettingController::class, 'updatePassword'])->name('setting.update-password');
 });
 Route::get("/notifikasi", function () {
     return view('notifikasi');
