@@ -45,7 +45,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input id="start_date" name="start_date" type="text"
+                            <input flatpickr-date id="start_date" name="start_date" type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Select date" value="{{ old('start_date') }}" required>
                         </div>
@@ -59,7 +59,8 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <input type="time" lang="id-ID" id="start_time" name="start_time" placeholder="00:00"
+                        <input flatpickr-time type="time" lang="id-ID" id="start_time" name="start_time"
+                            placeholder="00:00"
                             class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ old('start_time') }}" required />
                     </div>
@@ -77,7 +78,7 @@
                                         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                 </svg>
                             </div>
-                            <input id="end_date" name="end_date" type="text"
+                            <input flatpickr-date id="end_date" name="end_date" type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Select date" value="{{ old('end_date') }}" required>
                         </div>
@@ -91,7 +92,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <input type="time" id="end_time" name="end_time" placeholder="00:00"
+                        <input flatpickr-time type="time" id="end_time" name="end_time" placeholder="00:00"
                             class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ old('end_time') }}" required />
                     </div>
@@ -111,8 +112,8 @@
                     role="alert">
                     <div
                         class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 20">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z" />
                         </svg>
@@ -133,28 +134,5 @@
             @endforeach
         </div>
     @endif
-
-    <script>
-        flatpickr('#start_date', {
-            enableTime: false,
-            dateFormat: 'd-m-Y',
-        });
-        flatpickr('#end_date', {
-            enableTime: false,
-            dateFormat: 'd-m-Y',
-        });
-        flatpickr('#start_time', {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: 'H:i',
-            time_24hr: true,
-        });
-        flatpickr('#end_time', {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: 'H:i',
-            time_24hr: true,
-        });
-    </script>
 
 </x-layout>

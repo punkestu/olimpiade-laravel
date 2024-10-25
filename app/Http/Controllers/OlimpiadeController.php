@@ -47,8 +47,8 @@ class OlimpiadeController extends Controller
             'start_date' => 'required',
             'start_time' => 'required',
             'end_date' => ['required', function ($_, $value, $fail) use ($request) {
-                $value = $request->end_date . ' ' . $request->end_time;
-                $start_date = $request->start_date . ' ' . $request->start_time;
+                $value = Carbon::parse($request->end_date . ' ' . $request->end_time, "Asia/Jakarta");
+                $start_date = Carbon::parse($request->start_date . ' ' . $request->start_time, "Asia/Jakarta");
                 if ($value <= $start_date) {
                     $fail('Tanggal Selesai harus setelah Tanggal Mulai');
                 }
@@ -120,8 +120,8 @@ class OlimpiadeController extends Controller
             'start_date' => 'required',
             'start_time' => 'required',
             'end_date' => ['required', function ($_, $value, $fail) use ($request) {
-                $value = $request->end_date . ' ' . $request->end_time;
-                $start_date = $request->start_date . ' ' . $request->start_time;
+                $value = Carbon::parse($request->end_date . ' ' . $request->end_time, "Asia/Jakarta");
+                $start_date = Carbon::parse($request->start_date . ' ' . $request->start_time, "Asia/Jakarta");
                 if ($value <= $start_date) {
                     $fail('Tanggal Selesai harus setelah Tanggal Mulai');
                 }
