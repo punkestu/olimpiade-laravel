@@ -220,11 +220,7 @@
         const doneButton = document.getElementById('done-btn');
 
         var token;
-        if (!localStorage.getItem("API_TOKEN")) {
-            requestToken();
-        } else {
-            token = localStorage.getItem("API_TOKEN");
-        }
+        requestToken();
 
         if (answers[0]) {
             document.querySelector(`#answer${answers[0]}`).checked = true;
