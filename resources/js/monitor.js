@@ -2,9 +2,6 @@ export function monitor() {
     if (window.location.pathname != "/quiz") {
         return;
     }
-    if (localStorage.getItem("API_TOKEN") == null) {
-        window.location.href = "/login";
-    }
     initial();
     window.onresize = () => {
         if (isFullScreen()) {
@@ -50,7 +47,7 @@ var pusher;
 
 function pushAlert(code, message, data = undefined) {
     if (!localStorage.getItem("API_TOKEN")) {
-        window.location.href = "/login";
+        return false;
     }
     if (data && code == "screen") {
         data = `${data.screenWidth}x${data.screenHeight} ${data.width}x${data.height}`;
