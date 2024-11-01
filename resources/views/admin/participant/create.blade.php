@@ -95,6 +95,7 @@
             </div>
         </div>
     </div>
+    @include('components.errors');
     <script>
         function setOlimpiade(olimpiade) {
             document.querySelector('input[name="olimpiade_id"]').value = olimpiade.id;

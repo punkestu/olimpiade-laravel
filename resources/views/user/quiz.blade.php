@@ -184,6 +184,7 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
+                    redirect: 'follow',
                     body: JSON.stringify(
                         answers.map((item, i) => item ? ({
                             question_id: questions[i]["id"],

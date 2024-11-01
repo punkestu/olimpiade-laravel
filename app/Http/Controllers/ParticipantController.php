@@ -33,7 +33,7 @@ class ParticipantController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,NULL,id,olimpiade_id,' . $request->olimpiade_id,
             'olimpiade_id' => 'required',
         ]);
 

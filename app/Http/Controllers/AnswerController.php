@@ -43,6 +43,9 @@ class AnswerController extends Controller
 
     public function submit(Request $request)
     {
+        if (Auth::user()->finish) {
+            return redirect()->route("dashboard");
+        }
         $answers = $request->validate([
             "*.question_id" => "required|exists:questions,id",
             "*.answer" => "required"
