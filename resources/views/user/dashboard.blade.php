@@ -59,10 +59,6 @@
                 token = res.data.token;
             });
         }
-        if (!localStorage.getItem("API_TOKEN")) {
-            requestToken();
-        } else {
-            token = localStorage.getItem("API_TOKEN");
-        }
+        requestToken();
     </script>
 </x-layout>
