@@ -2,6 +2,9 @@ export function monitor() {
     if (window.location.pathname != "/quiz") {
         return;
     }
+    if (localStorage.getItem("API_TOKEN") == null) {
+        window.location.href = "/login";
+    }
     initial();
     window.onresize = () => {
         if (isFullScreen()) {
