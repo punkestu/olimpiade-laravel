@@ -16,7 +16,7 @@
 
         @include('user.numdrawer', ['questions' => $questions])
 
-        <aside class="flex-grow border p-4 rounded-md flex flex-col gap-4">
+        <aside class="flex-grow max-w-[75vw] border p-4 rounded-md flex flex-col gap-4">
             <div class="flex md:hidden justify-end">
                 <p>Sisa waktu: <span id="timer">01:30</span></p>
             </div>
@@ -99,7 +99,7 @@
                 </button>
             </div>
         </aside>
-        <aside class="w-[25%] hidden md:flex flex-col gap-4">
+        <aside class="min-w-[25vw] hidden md:flex flex-col gap-4">
             <div class="border p-4 rounded-md">
                 <svg class="w-full h-full" id="radial-timer" viewBox="0 0 100 100">
                     <circle class="text-gray-200 stroke-current" stroke-width="6" cx="50" cy="50"
@@ -115,7 +115,7 @@
             </div>
             <div class="border p-4 rounded-md flex-grow overflow-y-auto">
                 <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">Daftar Soal</h5>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-2">
+                <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-2">
                     @foreach ($questions as $question)
                         <label for="question-num-{{ $question->id }}"
                             class="aspect-square border focus:ring-4 font-medium rounded-md xl:rounded-lg text-sm cursor-pointer">
