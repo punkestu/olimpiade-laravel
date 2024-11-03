@@ -16,7 +16,7 @@
 
         @include('user.numdrawer', ['questions' => $questions])
 
-        <aside class="flex-grow max-w-[75vw] border p-4 rounded-md flex flex-col gap-4">
+        <aside class="flex-grow border p-4 rounded-md flex flex-col gap-4">
             <div class="flex md:hidden justify-end">
                 <p>Sisa waktu: <span id="timer">01:30</span></p>
             </div>
