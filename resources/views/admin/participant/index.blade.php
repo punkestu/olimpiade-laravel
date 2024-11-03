@@ -15,7 +15,7 @@
                         </div>
                         <input type="text" id="table-search"
                             class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for items" onkeyup="searchOlimpiade(this)">
+                            placeholder="Search for items" onkeyup="searchParticipant(this)">
                     </div>
                 </div>
                 <div class="flex gap-2">
@@ -256,6 +256,29 @@
     </div>
     @include('components.success')
     <script>
+        function searchParticipant(element)
+        {
+            const query = element.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                const columns = row.querySelectorAll('td');
+                let found = false;
+
+                columns.forEach(column => {
+                    if (column.textContent.toLowerCase().includes(query)) {
+                        found = true;
+                    }
+                });
+
+                if (found) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        }
+
         function setDeleteUrl(id) {
             document.querySelector('#hapus-confirmation-modal a').href = `/participant/${id}/delete`;
         }
