@@ -59,6 +59,21 @@ class User extends Authenticatable
         return $this->hasMany(Answer::class)->join('questions', 'question_id', '=', 'questions.id')->where('questions.correct_answer', FacadesDB::raw('answers.answer'));
     }
 
+    public function monitors()
+    {
+        return $this->hasMany(Monitor::class);
+    }
+
+    public function notfocus()
+    {
+        return $this->hasMany(Monitor::class)->where('message', '=', 'hidden');
+    }
+
+    public function notfullscreen()
+    {
+        return $this->hasMany(Monitor::class)->where('message', '=', 'windowed');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

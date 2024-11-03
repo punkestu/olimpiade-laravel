@@ -30,10 +30,10 @@
                                 Olimpiade
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Fokus
+                                Tidak Fokus
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Fullscreen
+                                Tidak Fullscreen
                             </th>
                             <th scope="col" class="px-6 py-3 text-center">
                                 Aksi
@@ -41,22 +41,25 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                        @foreach ($daftarpantau as $item)
+                        @foreach ($daftarpantau as $user)
+                            @if (!$user->olimpiade)
+                                @continue
+                            @endif
                             <tr>
                                 <td class="px-6 py-3">
-                                    {{ $item->user->login_id }}
+                                    {{ $user->login_id }}
                                 </td>
                                 <td class="px-6 py-3">
-                                    {{ $item->user->olimpiade->name }}
+                                    {{ $user->olimpiade->name }}
                                 </td>
                                 <td class="px-6 py-3">
-                                    {{ $item->is_focused ? 'Ya' : 'Tidak' }}
+                                    {{ count($user->notfocus) }}
                                 </td>
                                 <td class="px-6 py-3">
-                                    {{ $item->is_fullscreen ? 'Ya' : 'Tidak' }}
+                                    {{ count($user->notfullscreen) }}
                                 </td>
                                 <td class="px-6 py-3 text-center flex gap-2 justify-center">
-                                    <a href="{{ route('monitor.pantau', $item->user_id) }}"
+                                    <a href="{{ route('monitor.pantau', $user->id) }}"
                                         class="text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300">Pantau</a>
                                 </td>
                             </tr>

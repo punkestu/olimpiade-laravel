@@ -25,12 +25,11 @@ export function monitor() {
         window.onblur = () => {
             pushAlert("tab", "hidden");
         };
-        window.onfocus = () => {
-            pushAlert("tab", "visible");
-        };
     } else {
         document.addEventListener("visibilitychange", () => {
-            pushAlert("tab", document.visibilityState);
+            if (document.visibilityState == "hidden") {
+                pushAlert("tab", document.visibilityState);
+            }
         });
     }
 }
