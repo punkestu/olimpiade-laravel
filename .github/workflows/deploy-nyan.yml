@@ -19,5 +19,6 @@ jobs:
           script: |
             cd repositories/olimpiade-laravel
             git pull origin main
+            npm install
             npm run build
             php artisan migrate
