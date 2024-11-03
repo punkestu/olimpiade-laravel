@@ -81,4 +81,13 @@ class ParticipantController extends Controller
 
         return redirect()->route('participant')->with('success', 'Peserta berhasil dihapus');
     }
+
+    public function logout($id)
+    {
+        $participant = User::find($id);
+        $participant->is_login = false;
+        $participant->save();
+
+        return redirect()->route('participant')->with('success', 'Peserta berhasil dilogout');
+    }
 }

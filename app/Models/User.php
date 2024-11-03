@@ -29,7 +29,8 @@ class User extends Authenticatable
         'olimpiade_id',
         'login_id',
         'finish',
-        'poin'
+        'poin',
+        'is_login'
     ];
 
     /**

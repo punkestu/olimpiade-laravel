@@ -205,6 +205,8 @@
                                 window.location.href = "/dashboard";
                             }
                         });
+                    } else {
+                        alert(res.message);
                     }
                 })
             }

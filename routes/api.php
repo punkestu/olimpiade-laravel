@@ -11,8 +11,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post("/requesttoken", [LoginController::class, "getToken"]);
-Route::post("/monitor", [MonitorController::class, "listen"])->middleware('auth:sanctum');
 
-Route::get("/time", [AnswerController::class, "peekExpandTime"])->middleware('auth:sanctum');
-Route::get("/finish", [AnswerController::class, "finish"])->middleware('auth:sanctum');
-Route::post("/answer", [AnswerController::class, "submit"])->middleware('auth:sanctum');
+Route::group(["middleware" => ["auth:sanctum", "isLogin"]], function () {
+    Route::post("/monitor", [MonitorController::class, "listen"]);
+    Route::get("/time", [AnswerController::class, "peekExpandTime"]);
+    Route::get("/finish", [AnswerController::class, "finish"]);
+    Route::post("/answer", [AnswerController::class, "submit"]);
+});

@@ -9,6 +9,7 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SettingController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,6 @@ Route::get('/', function () {
     }
     return view('welcome');
 })->name('welcome');
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('dashboard');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::resource(
@@ -42,8 +40,13 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/reveal-login-id/{id}', [RegisterController::class, 'revealLoginID'])->name('reveal-login-id');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'isLogin']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
     Route::get('/logout', function () {
+        $user = User::find(Auth::id());
+        $user->is_login = false;
+        $user->save();
         Auth::logout();
         return redirect()->route('welcome');
     })->name('logout');
@@ -60,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/participant/change-password/{id}", [ParticipantController::class, 'changePassword'])->name('participant.change-password');
     Route::post("/participant/change-password/{id}", [ParticipantController::class, 'updatePassword'])->name('participant.update-password');
     Route::get("/participant/{id}/delete", [ParticipantController::class, 'destroy'])->name('participant.delete');
+    Route::get("/participant/{id}/logout", [ParticipantController::class, 'logout'])->name('participant.logout');
 
     Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
     Route::get("/monitoring/{id}", [MonitorController::class, "pantau"])->name('monitor.pantau');
