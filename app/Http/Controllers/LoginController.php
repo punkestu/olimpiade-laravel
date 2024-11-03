@@ -48,7 +48,7 @@ class LoginController extends Controller
             ])->onlyInput('login_id');
         }
 
-        if ($user->is_login) {
+        if ($user->is_login && $user->role != "admin") {
             return redirect()->back()->withErrors([
                 'login_id' => 'ID sudah digunakan untuk login.',
             ])->onlyInput('login_id');
