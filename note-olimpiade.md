@@ -1,0 +1,13 @@
+# Note Bug etc.
+- [x] monitor dibuat berapa kali leave
+- [x] tambah foto di soal
+- [ ] tambah rumus matematika di soal
+- [x] buat size sidebar quiz statis
+- [x] validasi kalau back bisa masuk soal lagi
+- [x] search peserta
+- [x] bug masukin tanggal olimpiade
+- [ ] coba kamera (coba jitsi)
+- [ ] tambah kirim ID lewat email
+- [x] cek user login ulang dan buat tombol logout
+- [ ] tambah tutorial ketika awal login
+- [ ] tambah invalidate token expired

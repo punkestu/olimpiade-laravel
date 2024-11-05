@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Images;
 use App\Models\Olimpiade;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -85,7 +86,8 @@ class OlimpiadeController extends Controller
         if ($olimpiade == null) return abort(404);
         $olimpiade->start_date = Carbon::parse($olimpiade->start_date, 'Asia/Jakarta');
         $olimpiade->end_date = Carbon::parse($olimpiade->end_date, 'Asia/Jakarta');
-        return view('admin.olimpiade.show', compact('olimpiade'));
+        $images = Images::all();
+        return view('admin.olimpiade.show', compact('olimpiade', 'images'));
     }
 
     /**

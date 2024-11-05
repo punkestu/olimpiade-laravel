@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MonitorController;
 use Illuminate\Http\Request;
@@ -17,4 +18,5 @@ Route::group(["middleware" => ["auth:sanctum", "isLogin"]], function () {
     Route::get("/time", [AnswerController::class, "peekExpandTime"]);
     Route::get("/finish", [AnswerController::class, "finish"]);
     Route::post("/answer", [AnswerController::class, "submit"]);
+    Route::post("/image/upload", [ImageController::class, "store"]);
 });

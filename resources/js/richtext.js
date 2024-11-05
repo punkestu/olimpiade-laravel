@@ -1,16 +1,38 @@
 import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
+import { Image } from "@tiptap/extension-image";
 
 export function initRichText() {
+    const CustomImage = Image.extend({
+        addAttributes() {
+            return {
+                ...this.parent?.(),
+                height: {
+                    default: null,
+                },
+            };
+        },
+        renderHTML({ HTMLAttributes }) {
+            const { height, src } = HTMLAttributes;
+            return [
+                "img",
+                {
+                    ...HTMLAttributes,
+                    src,
+                    style: `height: ${height}`,
+                },
+            ];
+        },
+    });
     document.querySelectorAll(".wysiwyg").forEach((element) => {
         const className = element.querySelector("#class").innerText;
         const editor = new Editor({
             element: element.querySelector("#editor"),
-            extensions: [StarterKit],
+            extensions: [StarterKit, CustomImage],
             editorProps: {
                 attributes: {
                     name: "description",
-                    class: `min-h-[20vh] max-h-[25vh] outline-none [&_ul]:pl-4 [&_ol]:pl-4 [&_ul]:list-disc [&_ol]:list-decimal overflow-y-auto ${className}`,
+                    class: `min-h-[20vh] max-h-[50vh] outline-none [&_ul]:pl-4 [&_ol]:pl-4 [&_ul]:list-disc [&_ol]:list-decimal overflow-y-auto ${className}`,
                 },
             },
         });
@@ -34,9 +56,26 @@ export function initRichText() {
             .addEventListener("click", () => {
                 editor.chain().focus().toggleOrderedList().run();
             });
+        element.querySelector("#selectImage").addEventListener("click", (e) => {
+            const path = element.querySelector(
+                "#image-container [type=radio]:checked"
+            ).value;
+            editor
+                .chain()
+                .focus()
+                .setImage({
+                    src: `/storage/${path}`,
+                    height: "100px",
+                })
+                .run();
+        });
         editor.on("update", () => {
-            const isEmpty = editor.state.doc.textContent.length === 0;
-            element.querySelector("#editor-content").value = isEmpty ? "" : editor.getHTML();
+            const isEmpty =
+                editor.state.doc.textContent.length === 0 &&
+                editor.state.doc.content.content.length === 0;
+            element.querySelector("#editor-content").value = isEmpty
+                ? ""
+                : editor.getHTML();
         });
         editor.commands.setContent(
             element.querySelector("#editor-content").value
