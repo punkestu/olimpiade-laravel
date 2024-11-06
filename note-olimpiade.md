@@ -1,7 +1,7 @@
 # Note Bug etc.
 - [x] monitor dibuat berapa kali leave
 - [x] tambah foto di soal
-- [ ] tambah rumus matematika di soal
+- [ ] tambah rumus matematika di soal (belum memungkinkan | bisa dihandle pakai foto dulu)
 - [x] buat size sidebar quiz statis
 - [x] validasi kalau back bisa masuk soal lagi
 - [x] search peserta
