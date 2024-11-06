@@ -59,9 +59,12 @@
                     Toggle ordered list
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
+                @php
+                    $nameImageModal = $name . str()->random(5);
+                @endphp
                 <button id="addImageButton" data-tooltip-target="tooltip-addimage" type="button"
-                    data-modal-target="{{ $name }}-image-modal"
-                    data-modal-toggle="{{ $name }}-image-modal"
+                    data-modal-target="{{ $nameImageModal }}-image-modal"
+                    data-modal-toggle="{{ $nameImageModal }}-image-modal"
                     class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -88,5 +91,5 @@
     </div>
     <input type="hidden" name="{{ $name }}" id="editor-content" value="{{ isset($value) ? $value : '' }}">
     <div id="class" hidden>{{ isset($class) ? $class : '' }}</div>
-    @include('components.uploadimage', ['name' => $name])
+    @include('components.uploadimage', ['name' => $nameImageModal])
 </div>

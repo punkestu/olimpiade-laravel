@@ -103,7 +103,8 @@ class OlimpiadeController extends Controller
         $olimpiade["start_date"] = $start_date->format('m/d/Y');
         $olimpiade["end_time"] = $end_date->format('H:i');
         $olimpiade["end_date"] = $end_date->format('m/d/Y');
-        return view('admin.olimpiade.edit', compact('olimpiade'));
+        $images = Images::all();
+        return view('admin.olimpiade.edit', compact('olimpiade', 'images'));
     }
 
     /**
