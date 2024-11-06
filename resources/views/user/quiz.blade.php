@@ -186,10 +186,10 @@
                     },
                     redirect: 'follow',
                     body: JSON.stringify(
-                        answers.map((item, i) => item ? ({
+                        answers.map((item, i) => item ? (questions[i] ? ({
                             question_id: questions[i]["id"],
                             answer: item
-                        }) : null).filter(item => item)
+                        }) : null) : null).filter(item => item)
                     )
                 }).then(res => res.json()).then(res => {
                     if (res.code === 200 && finish) {
