@@ -60,11 +60,11 @@
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 @php
-                    $nameImageModal = $name . str()->random(5);
+                    $nameModal = $name . str()->random(5);
                 @endphp
                 <button id="addImageButton" data-tooltip-target="tooltip-addimage" type="button"
-                    data-modal-target="{{ $nameImageModal }}-image-modal"
-                    data-modal-toggle="{{ $nameImageModal }}-image-modal"
+                    data-modal-target="{{ $nameModal }}-image-modal"
+                    data-modal-toggle="{{ $nameModal }}-image-modal"
                     class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -81,6 +81,22 @@
                     Tambah Foto
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
+                <button id="addFormulaButton" data-tooltip-target="tooltip-addformula" type="button"
+                    data-modal-target="{{ $nameModal }}-formula-modal"
+                    data-modal-toggle="{{ $nameModal }}-formula-modal"
+                    class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 20h-4v-.5c1.0989-1.0329 3.75-2.5 3.75-3.5v-1.0001c0-.5523-.4477-.9999-1-.9999H17c-.5522 0-1 .4477-1 1M4.00004 4l9.12206 11.3932m0-11.3932L4 15.3932" />
+                    </svg>
+                    <span class="sr-only">Add Formula</span>
+                </button>
+                <div id="tooltip-addformula" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Tambah Foto
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
             </div>
         </div>
     </div>
@@ -91,5 +107,6 @@
     </div>
     <input type="hidden" name="{{ $name }}" id="editor-content" value="{{ isset($value) ? $value : '' }}">
     <div id="class" hidden>{{ isset($class) ? $class : '' }}</div>
-    @include('components.uploadimage', ['name' => $nameImageModal])
+    @include('components.uploadimage', ['name' => $nameModal])
+    @include('components.formulabuilder', ['name' => $nameModal])
 </div>

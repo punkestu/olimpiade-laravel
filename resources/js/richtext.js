@@ -1,6 +1,9 @@
 import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import { Image } from "@tiptap/extension-image";
+import { MathExtension } from "@aarkue/tiptap-math-extension";
+
+import "katex/dist/katex.min.css";
 
 export function initRichText() {
     const CustomImage = Image.extend({
@@ -28,7 +31,24 @@ export function initRichText() {
         const className = element.querySelector("#class").innerText;
         const editor = new Editor({
             element: element.querySelector("#editor"),
-            extensions: [StarterKit, CustomImage],
+            extensions: [
+                StarterKit,
+                CustomImage,
+                MathExtension.configure({
+                    inlineMath: {
+                        delimiters: [
+                            ["$", "$"],
+                            ["\\(", "\\)"],
+                        ],
+                    },
+                    displayMath: {
+                        delimiters: [
+                            ["$$", "$$"],
+                            ["\\[", "\\]"],
+                        ],
+                    },
+                }),
+            ],
             editorProps: {
                 attributes: {
                     name: "description",
@@ -55,6 +75,23 @@ export function initRichText() {
             .querySelector("#toggleOrderedListButton")
             .addEventListener("click", () => {
                 editor.chain().focus().toggleOrderedList().run();
+            });
+        element
+            .querySelector("[name=formula-container]")
+            .addEventListener("change", (e) => {
+                const formula = element.querySelector(
+                    "[name=formula-container]"
+                ).value;
+                console.log(formula);
+                editor
+                    .chain()
+                    .focus()
+                    .insertContent({
+                        type: "inlineMath",
+                        attrs: { latex: formula },
+                    })
+                    .run();
+                editor.view.updateState(editor.state);
             });
         element.querySelector("#selectImage").addEventListener("click", (e) => {
             const path = element.querySelector(
