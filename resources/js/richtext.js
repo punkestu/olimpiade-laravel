@@ -2,8 +2,25 @@ import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import { Image } from "@tiptap/extension-image";
 import { MathExtension } from "@aarkue/tiptap-math-extension";
+import katex from "katex";
 
 import "katex/dist/katex.min.css";
+
+export function setKatex() {
+    document.querySelectorAll('[data-type="inlineMath"]').forEach((element) => {
+        var content = element.textContent;
+        if (content.startsWith("$")) {
+            content = content.substring(1);
+        }
+        if (content.endsWith("$")) {
+            content = content.substring(0, content.length - 1);
+        }
+        katex.render(content, element, {
+            throwOnError: false,
+        });
+        element.removeAttribute("data-type");
+    });
+}
 
 export function initRichText() {
     const CustomImage = Image.extend({
@@ -79,10 +96,7 @@ export function initRichText() {
         element
             .querySelector("[name=formula-container]")
             .addEventListener("change", (e) => {
-                const formula = element.querySelector(
-                    "[name=formula-container]"
-                ).value;
-                console.log(formula);
+                const formula = e.target.value;
                 editor
                     .chain()
                     .focus()
@@ -91,7 +105,6 @@ export function initRichText() {
                         attrs: { latex: formula },
                     })
                     .run();
-                editor.view.updateState(editor.state);
             });
         element.querySelector("#selectImage").addEventListener("click", (e) => {
             const path = element.querySelector(

@@ -190,6 +190,8 @@
             const showModal = document.getElementById('show-modal');
             const editModal = document.getElementById('edit-modal');
 
+            document.dispatchEvent(new CustomEvent('refresh-katex'));
+
             showModal.querySelector('#header').innerHTML = `Pertanyaan ${index} (${data.poin})`;
             showModal.querySelector('#question').innerHTML = data.question;
             showModal.querySelector('#answer1').innerHTML = `a. ${data.answer1}`;

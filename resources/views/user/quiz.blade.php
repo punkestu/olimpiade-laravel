@@ -304,6 +304,8 @@
 
             document.querySelector("#question-num-drawer-" + question.id).checked = true;
             document.querySelector("#question-num-" + question.id).checked = true;
+
+            document.dispatchEvent(new CustomEvent('refresh-katex'));
         }
 
         function setAnswer(answer) {
