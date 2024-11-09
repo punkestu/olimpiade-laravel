@@ -105,6 +105,17 @@
                                                 d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
                                         </svg>
                                         Edit</a>
+                                    <a href="https://meet.jit.si/vpaas-magic-cookie-5be5eb5971044a0b90dc1fa63a382948/{{ $olimpiade->id }}-olimpiade12345"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center text-center"><svg
+                                            class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M14 7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7Zm2 9.387 4.684 1.562A1 1 0 0 0 22 17V7a1 1 0 0 0-1.316-.949L16 7.613v8.774Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Monitor
+                                        Kamera</a>
                                 </td>
                             </tr>
                         @endforeach

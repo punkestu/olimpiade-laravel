@@ -1,5 +1,6 @@
 <x-layout>
     <x-slot:title>Dashboard</x-slot:title>
+    @include('components.jitsi')
     <main class="p-4 min-h-[100vh] flex gap-4">
         <div class="text-center fixed bottom-2 right-2 block md:hidden">
             <button
@@ -205,8 +206,6 @@
                                 window.location.href = "/dashboard";
                             }
                         });
-                    } else {
-                        alert(res.message);
                     }
                 })
             }
