@@ -69,7 +69,7 @@ class OlimpiadeController extends Controller
         if ($request->hasFile('image'))
             $data['image'] = $request->file('image')->store('olimpiade', 'public');
         else
-            $data['image'] = 'olimpiade/default.jpg';
+            $data['image'] = '';
         $data['start_date'] = Carbon::parse($request->start_date . ' ' . $request->start_time)->format("Y-m-d H:i:s");
         $data['end_date'] = Carbon::parse($request->end_date . ' ' . $request->end_time)->format("Y-m-d H:i:s");
         $data['slug'] = Str::slug($request->name);

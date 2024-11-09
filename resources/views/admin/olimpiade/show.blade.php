@@ -2,14 +2,15 @@
     <x-slot:title>Olimpiade</x-slot:title>
     <main class="p-4 sm:ml-64">
         <div class="w-full h-[30vh]">
-            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $olimpiade->image) }}"
+            <img class="w-full h-full object-cover"
+                src="{{ $olimpiade->image == '' ? '/image/background/dashboard.jpg' : asset('storage/' . $olimpiade->image) }}"
                 alt="{{ $olimpiade->name }}">
         </div>
         <h1 class="mt-2 text-5xl font-bold">{{ $olimpiade->name }}</h1>
         <div class="mt-2 flex gap-2 px-2 py-1 bg-slate-200 w-fit rounded-md">
-            <p class="font-semibold">{{ $olimpiade->start_date->format("d F Y H:i") }}</span></p>
+            <p class="font-semibold">{{ $olimpiade->start_date->format('d F Y H:i') }}</span></p>
             <p>-</p>
-            <p class="font-semibold">{{ $olimpiade->end_date->format("d F Y H:i") }}</p>
+            <p class="font-semibold">{{ $olimpiade->end_date->format('d F Y H:i') }}</p>
         </div>
         <div class="mt-2 [&_ul]:pl-4 [&_ul]:list-disc [&_ol]:pl-4 [&_ol]:list-decimal">
             {!! $olimpiade->description !!}
@@ -88,9 +89,9 @@
                                     <button onclick='setQuestion({{ $loop->iteration }}, @json($question))'
                                         data-modal-target="show-modal" data-modal-toggle="show-modal"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            fill="none" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-width="2"
                                                 d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
                                             <path stroke="currentColor" stroke-width="2"
@@ -100,9 +101,9 @@
                                     <button data-modal-target="edit-modal" data-modal-toggle="edit-modal"
                                         onclick='setQuestion({{ $loop->iteration }}, @json($question))'
                                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            fill="none" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2"
                                                 d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
@@ -112,9 +113,9 @@
                                         data-modal-toggle="confirmation-modal"
                                         onclick="setDeleteUrl({{ $question->id }})"
                                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            fill="none" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 md:block hidden"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-width="2"
                                                 d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
