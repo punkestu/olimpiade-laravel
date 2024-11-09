@@ -28,9 +28,10 @@
                                 id="{{ $name }}-image" type="file" accept=".jpeg,.png,.jpg">
                             <button type="button"
                                 class="aspect-square text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                onclick="uploadImage()"><svg class="w-6 h-6 text-white dark:text-gray-800"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    fill="currentColor" viewBox="0 0 24 24">
+                                onclick="uploadImage('{{ $name }}')"><svg
+                                    class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path fill-rule="evenodd"
                                         d="M12 3a1 1 0 0 1 .78.375l4 5a1 1 0 1 1-1.56 1.25L13 6.85V14a1 1 0 1 1-2 0V6.85L8.78 9.626a1 1 0 1 1-1.56-1.25l4-5A1 1 0 0 1 12 3ZM9 14v-1H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4v1a3 3 0 1 1-6 0Zm8 2a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z"
                                         clip-rule="evenodd" />
@@ -39,7 +40,7 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <div id="image-container" class="max-h-[30vh] overflow-y-auto grid grid-cols-4 gap-2">
+                        <div id="image-container" class="images-container max-h-[30vh] overflow-y-auto grid grid-cols-4 gap-2">
                             @foreach ($images as $image)
                                 <div class="aspect-square">
                                     <input type="radio" name="{{ $name }}-image"
@@ -65,7 +66,7 @@
     </div>
 </div>
 <script>
-    async function uploadImage() {
+    async function uploadImage(name) {
         const tokenRes = await fetch("/api/requesttoken", {
             method: 'POST',
             headers: {
@@ -77,7 +78,7 @@
             }),
         }).then(res => res.json());
         const token = tokenRes.data.token;
-        const image = document.getElementById('{{ $name }}-image');
+        const image = document.getElementById(`${name}-image`);
         const formData = new FormData();
         formData.append('image', image.files[0]);
         fetch('/api/image/upload', {
