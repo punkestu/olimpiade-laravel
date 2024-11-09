@@ -25,7 +25,7 @@
                         <div class="flex gap-2">
                             <input
                                 class="block flex-grow text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="image" type="file" accept=".jpeg,.png,.jpg">
+                                id="{{ $name }}-image" type="file" accept=".jpeg,.png,.jpg">
                             <button type="button"
                                 class="aspect-square text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 onclick="uploadImage()"><svg class="w-6 h-6 text-white dark:text-gray-800"
@@ -77,7 +77,7 @@
             }),
         }).then(res => res.json());
         const token = tokenRes.data.token;
-        const image = document.getElementById('image');
+        const image = document.getElementById('{{ $name }}-image');
         const formData = new FormData();
         formData.append('image', image.files[0]);
         fetch('/api/image/upload', {
