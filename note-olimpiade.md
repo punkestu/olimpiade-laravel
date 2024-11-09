@@ -6,7 +6,7 @@
 - [x] validasi kalau back bisa masuk soal lagi
 - [x] search peserta
 - [x] bug masukin tanggal olimpiade
-- [ ] coba kamera (coba jitsi)
+- [ ] coba kamera (coba jitsi) (test 26 user dulu)
 - [ ] tambah kirim ID lewat email
 - [x] cek user login ulang dan buat tombol logout
 - [ ] tambah tutorial ketika awal login
