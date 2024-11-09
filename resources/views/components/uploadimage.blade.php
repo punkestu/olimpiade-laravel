@@ -40,7 +40,8 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <div id="image-container" class="images-container max-h-[30vh] overflow-y-auto grid grid-cols-4 gap-2">
+                        <div id="image-container" data-name="{{ $name }}"
+                            class="images-container max-h-[30vh] overflow-y-auto grid grid-cols-4 gap-2">
                             @foreach ($images as $image)
                                 <div class="aspect-square">
                                     <input type="radio" name="{{ $name }}-image"
@@ -91,11 +92,12 @@
             .then(data => {
                 alert("Foto berhasil diupload");
                 document.querySelectorAll(".images-container").forEach(element => {
+                    const dataName = element.getAttribute("data-name");
                     element.innerHTML += `
                         <div class="aspect-square">
-                            <input type="radio" name="image" id="image-${data.id}"
+                            <input type="radio" name="${ dataName }-image" id="${ dataName }-image-${data.id}"
                                 value="${data.path}" class="peer/image w-0 h-0 absolute opacity-0">
-                            <label for="image-${data.id}"
+                            <label for="${ dataName }-image-${data.id}"
                                 class="w-full h-full object-contain peer-checked/image:border-blue-500 block cursor-pointer text-sm text-gray-900 dark:text-white border px-2 py-1 rounded-md">
                                 <img class="w-full h-full object-cover" src="/storage/${data.path}" alt="${data.name}">
                             </label>
