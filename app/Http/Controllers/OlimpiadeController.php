@@ -101,9 +101,9 @@ class OlimpiadeController extends Controller
         $start_date = Carbon::parse($olimpiade->start_date);
         $end_date = Carbon::parse($olimpiade->end_date);
         $olimpiade["start_time"] = $start_date->format('H:i');
-        $olimpiade["start_date"] = $start_date->format('m/d/Y');
+        $olimpiade["start_date"] = $start_date->format('d/m/Y');
         $olimpiade["end_time"] = $end_date->format('H:i');
-        $olimpiade["end_date"] = $end_date->format('m/d/Y');
+        $olimpiade["end_date"] = $end_date->format('d/m/Y');
         $images = Images::all();
         return view('admin.olimpiade.edit', compact('olimpiade', 'images'));
     }
