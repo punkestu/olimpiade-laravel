@@ -29,7 +29,8 @@ class OlimpiadeController extends Controller
      */
     public function create()
     {
-        return view('admin.olimpiade.create');
+        $images = Images::all();
+        return view('admin.olimpiade.create', compact("images"));
     }
 
     /**
