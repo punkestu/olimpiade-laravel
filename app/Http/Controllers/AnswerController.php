@@ -23,7 +23,7 @@ class AnswerController extends Controller
         if (Carbon::now('Asia/Jakarta')->lt($start_time) || Carbon::now('Asia/Jakarta')->gt($end_time)) {
             return redirect()->route('dashboard');
         }
-        $room = Auth::user()->olimpiade->id . "-olimpiade12345";
+        $room = Auth::user()->olimpiade->slug . "-olimpiade12345";
         $questions = Question::select(['id', 'question', 'answer1', 'answer2', 'answer3', 'answer4'])
             ->where('olimpiade_id', Auth::user()->olimpiade->id)->get();
         return view('user.quiz', compact('questions', 'start_time', 'end_time', 'room'));

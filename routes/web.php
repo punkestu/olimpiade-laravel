@@ -45,9 +45,11 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
         ->name('dashboard');
     Route::get('/logout', function () {
         $user = User::find(Auth::id());
-        $user->is_login = false;
-        $user->save();
-        Auth::logout();
+        if ($user->role != "admin") {
+            $user->is_login = false;
+            $user->save();
+            Auth::logout();
+        }
         return redirect()->route('welcome');
     })->name('logout');
     Route::resource('olimpiade', OlimpiadeController::class, ['names' => 'olimpiade']);
