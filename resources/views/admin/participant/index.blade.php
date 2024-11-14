@@ -92,13 +92,22 @@
                                                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
                                         Detail</a>
+                                    <button onclick="mail('{{ $participant->id }}')"
+                                        class="focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-green-900 flex items-center text-center">
+                                        <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                                d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
+                                        </svg>
+                                        Email</button>
                                     <a href="{{ route('participant.change-password', $participant->id) }}"
                                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 flex items-center text-center">
                                         <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden"
                                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
                                                 d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
                                         </svg>
                                         Ganti Password</a>
@@ -256,8 +265,7 @@
     </div>
     @include('components.success')
     <script>
-        function searchParticipant(element)
-        {
+        function searchParticipant(element) {
             const query = element.value.toLowerCase();
             const rows = document.querySelectorAll('tbody tr');
 
@@ -285,6 +293,42 @@
 
         function setLogoutUrl(id) {
             document.querySelector('#logout-confirmation-modal a').href = `/participant/${id}/logout`;
+        }
+
+        function mail(participant_id) {
+            fetch('{{ route ('request.token') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: {{ auth()->id() }},
+                })
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert('Token gagal diambil');
+                }
+            }).then(data => {
+                token = data.data.token;
+                fetch('{{ route('participant.mail') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        participant_id: participant_id,
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Email berhasil dikirim');
+                    } else {
+                        alert('Email gagal dikirim');
+                    }
+                });
+            });
         }
     </script>
 </x-layout>
