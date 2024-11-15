@@ -12,3 +12,7 @@
 - [ ] tambah tutorial ketika awal login
 - [ ] tambah invalidate token expired
 - [ ] fix monitor pantau
+- [x] fix input rumus
+- [ ] resize foto soal
+- [ ] scroll modal select olimpiade
+- [ ] tambah tombol reset semua peserta

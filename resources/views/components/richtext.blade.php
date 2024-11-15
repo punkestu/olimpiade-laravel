@@ -1,4 +1,9 @@
-<div class="wysiwyg w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+@php
+    $random = str()->random(5);
+    $modalName = $name . $random . "-richtext";
+@endphp
+<div id="{{ $modalName }}"
+    class="wysiwyg w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <div class="px-3 py-2 border-b dark:border-gray-600">
         <div class="flex flex-wrap items-center">
             <div class="flex items-center space-x-1 rtl:space-x-reverse flex-wrap">
@@ -82,8 +87,8 @@
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <button id="addFormulaButton" data-tooltip-target="tooltip-addformula" type="button"
-                    data-modal-target="{{ $nameModal }}-formula-modal"
-                    data-modal-toggle="{{ $nameModal }}-formula-modal"
+                    data-modal-target="formula-modal" data-modal-toggle="formula-modal"
+                    onclick="document.getElementById('formula-buffer').value = ''; setRichtextFormula('{{ $modalName }}')"
                     class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" fill="none" viewBox="0 0 24 24">
@@ -105,8 +110,8 @@
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
         </div>
     </div>
+    <input type="hidden" id="formula-buffer">
     <input type="hidden" name="{{ $name }}" id="editor-content" value="{{ isset($value) ? $value : '' }}">
     <div id="class" hidden>{{ isset($class) ? $class : '' }}</div>
     @include('components.uploadimage', ['name' => $nameModal])
-    @include('components.formulabuilder', ['name' => $nameModal])
 </div>

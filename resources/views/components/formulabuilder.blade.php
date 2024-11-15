@@ -1,5 +1,5 @@
-<div id="{{ $name }}-formula-modal" tabindex="-1" aria-hidden="true"
-    class="{{ $name }}-formula-modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="formula-modal" tabindex="-1" aria-hidden="true"
+    class="formula-modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -8,7 +8,7 @@
                 </h3>
                 <button type="button"
                     class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="{{ $name }}-formula-modal">
+                    data-modal-hide="formula-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -151,6 +151,36 @@
                                 </g>
                             </svg>
                         </label>
+                        <input type="radio" name="formula" id="degree" value="degree"
+                            class="hidden peer/degree">
+                        <label for="degree"
+                            class="p-1 border peer-checked/degree:border-blue-500 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16.888px" height="13.144px"
+                                viewBox="0 -715 933 726" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" style="">
+                                <defs>
+                                    <path id="MJX-19-TEX-I-1D450"
+                                        d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z">
+                                    </path>
+                                    <path id="MJX-19-TEX-N-B0"
+                                        d="M147 628Q147 669 179 692T244 715Q298 715 325 689T352 629Q352 592 323 567T249 542Q202 542 175 567T147 628ZM313 628Q313 660 300 669T259 678H253Q248 678 242 678T234 679Q217 679 207 674T192 659T188 644T187 629Q187 600 198 590Q210 579 250 579H265Q279 579 288 581T305 595T313 628Z">
+                                    </path>
+                                </defs>
+                                <g stroke="#000000" fill="#000000" stroke-width="0" transform="scale(1,-1)">
+                                    <g data-mml-node="math">
+                                        <g data-mml-node="mi">
+                                            <use data-c="1D450" xlink:href="#MJX-19-TEX-I-1D450"></use>
+                                        </g>
+                                        <g data-mml-node="TeXAtom" data-mjx-texclass="ORD"
+                                            transform="translate(433,0)">
+                                            <g data-mml-node="mo">
+                                                <use data-c="B0" xlink:href="#MJX-19-TEX-N-B0"></use>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
                     </div>
                     <div class="my-2">
                         <input type="hidden" name="formula-container" value>
@@ -170,8 +200,12 @@
                             <input type="text" id="a" class="text-center w-24 h-10" placeholder="a">
                             <input type="text" id="b" class="text-center w-56 h-24" placeholder="b">
                         </div>
+                        <div id="degree-input" class="formula-input flex gap-2 hidden">
+                            <input type="text" id="a" class="text-center w-1/2" placeholder="a">
+                            <input type="text" id="b" class="text-center w-1/3" placeholder="b">
+                        </div>
                     </div>
-                    <button type="button" id="insertFormula" data-modal-hide="{{ $name }}-formula-modal"
+                    <button type="button" id="insertFormula" data-modal-hide="formula-modal"
                         class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         onclick="insert()">Sisipkan</button>
                 </div>
@@ -179,69 +213,93 @@
         </div>
     </div>
 </div>
+
 <script>
     var lastInput;
-    document.querySelectorAll('input[name="formula"]').forEach((input) => {
-        input.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                if (lastInput) {
-                    lastInput.classList.add('hidden');
+    document
+        .querySelectorAll('input[name="formula"]')
+        .forEach((input) => {
+            input.addEventListener("change", (e) => {
+                if (e.target.checked) {
+                    if (lastInput) {
+                        lastInput.classList.add("hidden");
+                    }
+                    lastInput = document.querySelector(`#${e.target.id}-input`);
+                    lastInput.classList.remove("hidden");
                 }
-                lastInput = document.querySelector(`#${e.target.id}-input`);
-                lastInput.classList.remove('hidden');
-            }
+            });
         });
-    });
 
     function insert() {
-        const formula = document.querySelector('input[name="formula"]:checked').value;
-        var formulaLatex = '';
+        const formula = document.querySelector(
+            'input[name="formula"]:checked'
+        ).value;
+        var formulaLatex = "";
         switch (formula) {
-            case 'fraction':
+            case "fraction":
                 formulaLatex = fractionFormula();
                 break;
-            case 'exponent':
+            case "exponent":
                 formulaLatex = exponentFormula();
                 break;
-            case 'root':
+            case "root":
                 formulaLatex = rootFormula();
                 break;
-            case 'sqroot':
+            case "sqroot":
                 formulaLatex = sqrootFormula();
                 break;
+            case "degree":
+                formulaLatex = degreeFormula();
+                break;
         }
-        document.querySelector("[name=formula-container]").value = formulaLatex;
-        document.querySelector("[name=formula-container]").dispatchEvent(new Event('change'));
+        const richtextid = document.querySelector("#formula-modal").getAttribute(
+            "data-richtext"
+        );
+        const formulaContainer = document.getElementById(richtextid);
+        formulaContainer.querySelector("#formula-buffer").value = formulaLatex;
+        formulaContainer.querySelector("#formula-buffer").dispatchEvent(new Event("change"));
     }
-</script>
-<script>
+
     function fractionFormula() {
-        const a = document.querySelector('#fraction-input #a').value;
-        const b = document.querySelector('#fraction-input #b').value;
-        document.querySelector('#fraction-input #a').value = '';
-        document.querySelector('#fraction-input #b').value = '';
+        const a = document.querySelector("#fraction-input #a").value;
+        const b = document.querySelector("#fraction-input #b").value;
+        document.querySelector("#fraction-input #a").value = "";
+        document.querySelector("#fraction-input #b").value = "";
         return `\\frac{${a}}{${b}}`;
     }
 
     function exponentFormula() {
-        const a = document.querySelector('#exponent-input #a').value;
-        const b = document.querySelector('#exponent-input #b').value;
-        document.querySelector('#exponent-input #a').value = '';
-        document.querySelector('#exponent-input #b').value = '';
+        const a = document.querySelector("#exponent-input #a").value;
+        const b = document.querySelector("#exponent-input #b").value;
+        document.querySelector("#exponent-input #a").value = "";
+        document.querySelector("#exponent-input #b").value = "";
         return `${a}^{${b}}`;
     }
 
     function rootFormula() {
-        const a = document.querySelector('#root-input #a').value;
-        document.querySelector('#root-input #a').value = '';
+        const a = document.querySelector("#root-input #a").value;
+        document.querySelector("#root-input #a").value = "";
         return `\\sqrt{${a}}`;
     }
 
     function sqrootFormula() {
-        const a = document.querySelector('#sqroot-input #a').value;
-        const b = document.querySelector('#sqroot-input #b').value;
-        document.querySelector('#sqroot-input #a').value = '';
-        document.querySelector('#sqroot-input #b').value = '';
+        const a = document.querySelector("#sqroot-input #a").value;
+        const b = document.querySelector("#sqroot-input #b").value;
+        document.querySelector("#sqroot-input #a").value = "";
+        document.querySelector("#sqroot-input #b").value = "";
         return `\\sqrt[${a}]{${b}}`;
+    }
+
+    function degreeFormula() {
+        const a = document.querySelector("#degree-input #a").value;
+        const b = document.querySelector("#degree-input #b").value;
+        document.querySelector("#degree-input #a").value = "";
+        document.querySelector("#degree-input #b").value = "";
+        return `${a}^\\circ ${b}`;
+    }
+
+    function setRichtextFormula(id) {
+        const formulaContainer = document.querySelector("#formula-modal");
+        formulaContainer.setAttribute("data-richtext", id);
     }
 </script>

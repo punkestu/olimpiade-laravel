@@ -106,6 +106,8 @@
         </form>
     </main>
 
+    @include('components.formulabuilder')
+
     @if ($errors->any())
         <div class="fixed bottom-0 right-0 z-50">
             @foreach ($errors->all() as $error)

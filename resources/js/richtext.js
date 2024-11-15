@@ -94,7 +94,7 @@ export function initRichText() {
                 editor.chain().focus().toggleOrderedList().run();
             });
         element
-            .querySelector("[name=formula-container]")
+            .querySelector("#formula-buffer")
             .addEventListener("change", (e) => {
                 const formula = e.target.value;
                 editor

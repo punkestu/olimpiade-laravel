@@ -173,12 +173,12 @@
         </div>
     </div>
 
-
     @include('admin.olimpiade.question.create', ['olimpiade_id' => $olimpiade->id])
     @if (count($olimpiade->questions) > 0)
         @include('admin.olimpiade.question.show')
         @include('admin.olimpiade.question.edit')
     @endif
+    @include('components.formulabuilder')
     @include('components.success')
     @include('components.errors')
     <script>
