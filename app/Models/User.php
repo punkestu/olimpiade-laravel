@@ -30,7 +30,8 @@ class User extends Authenticatable
         'login_id',
         'finish',
         'poin',
-        'is_login'
+        'is_login',
+        'sent_email'
     ];
 
     /**

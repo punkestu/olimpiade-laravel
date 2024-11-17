@@ -10,14 +10,6 @@ use Illuminate\Support\Facades\Mail;
 class ParticipantMailController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -29,7 +21,7 @@ class ParticipantMailController extends Controller
         $mail = new ParticipantMail($participant);
         Mail::to($participant->email)->send($mail);
         return response()->json([
-            'message' => 'Email berhasil dikirim', 
+            'message' => 'Email berhasil dikirim',
             "data" => [
                 "email" => $participant->email,
                 "name" => $participant->name,
@@ -37,27 +29,28 @@ class ParticipantMailController extends Controller
         ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+    public function batchStore(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
+        $request->validate([
+            "olimpiade_id" => "required|exists:olimpiades,id"
+        ]);
+        $participants = User::where('olimpiade_id', $request->olimpiade_id)->get();
+        $count = 0;
+        foreach ($participants as $participant) {
+            if ($participant->sent_email) {
+                continue;
+            }
+            $mail = new ParticipantMail($participant);
+            Mail::to($participant->email)->send($mail);
+            $participant->sent_email = true;
+            $participant->save();
+            $count++;
+        }
+        return response()->json([
+            'message' => 'Email berhasil dikirim',
+            "data" => [
+                "sent_count" => $count
+            ]
+        ], 200);
     }
 }

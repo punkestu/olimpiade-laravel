@@ -13,6 +13,8 @@
 - [ ] tambah invalidate token expired
 - [ ] fix monitor pantau
 - [x] fix input rumus
-- [ ] resize foto soal
-- [ ] scroll modal select olimpiade
+- [ ] resize foto soal (set with 50% width)
+- [x] scroll modal select olimpiade
 - [ ] tambah tombol reset semua peserta
+- [x] tambah tombol kirim email ke semua peserta
+- [ ] cek kemungkinan kamera tidak bisa hidup lagi setelah keluar page

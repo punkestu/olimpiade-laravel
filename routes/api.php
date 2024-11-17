@@ -23,3 +23,4 @@ Route::group(["middleware" => ["auth:sanctum", "isLogin"]], function () {
 });
 
 Route::post("/participant/mail", [ParticipantMailController::class, "store"])->name("participant.mail")->middleware("auth:sanctum");
+Route::post("/participant/mail/all", [ParticipantMailController::class, "batchStore"])->name("participant.mailall")->middleware("auth:sanctum");

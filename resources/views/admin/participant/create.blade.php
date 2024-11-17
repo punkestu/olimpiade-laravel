@@ -73,7 +73,7 @@
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
                     <p class="text-gray-500 dark:text-gray-400 mb-4">Pilih Kategori:</p>
-                    <ul class="space-y-4 mb-4">
+                    <ul class="space-y-4 mb-4 max-h-[50vh] overflow-y-auto">
                         @foreach ($olimpiades as $olimpiade)
                             <li>
                                 <button type="button" onclick="setOlimpiade({{ json_encode($olimpiade) }})"

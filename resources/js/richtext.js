@@ -27,19 +27,19 @@ export function initRichText() {
         addAttributes() {
             return {
                 ...this.parent?.(),
-                height: {
+                width: {
                     default: null,
                 },
             };
         },
         renderHTML({ HTMLAttributes }) {
-            const { height, src } = HTMLAttributes;
+            const { width, src } = HTMLAttributes;
             return [
                 "img",
                 {
                     ...HTMLAttributes,
                     src,
-                    style: `height: ${height}`,
+                    style: `width: ${width}`,
                 },
             ];
         },
@@ -115,7 +115,7 @@ export function initRichText() {
                 .focus()
                 .setImage({
                     src: `/storage/${path}`,
-                    height: "100px",
+                    width: "50%",
                 })
                 .run();
         });
