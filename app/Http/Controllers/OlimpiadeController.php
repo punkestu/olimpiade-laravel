@@ -154,8 +154,9 @@ class OlimpiadeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Olimpiade $olimpiade)
+    public function destroy(Request $request)
     {
-        //
+        Olimpiade::destroy($request->id);
+        return redirect()->route('olimpiade.index')->with('success', 'Olimpiade berhasil dihapus');
     }
 }

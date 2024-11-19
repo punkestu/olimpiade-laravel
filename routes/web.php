@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\OlimpiadeController;
 use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\ParticipantImportController;
+use App\Http\Controllers\ParticipantResetController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SettingController;
@@ -53,6 +55,7 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
         return redirect()->route('welcome');
     })->name('logout');
     Route::resource('olimpiade', OlimpiadeController::class, ['names' => 'olimpiade']);
+    Route::get('/olimpiade/{id}/delete', [OlimpiadeController::class, 'destroy'])->name('olimpiade.delete');
     Route::resource('question', QuestionController::class, ['only' => ['store'], 'names' => 'question', 'parameters' => ['question.store' => 'olimpiade_id']]);
 
     Route::post("/question/{question_id}/update", [QuestionController::class, 'update'])->name('question.update');
@@ -66,6 +69,10 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
     Route::post("/participant/change-password/{id}", [ParticipantController::class, 'updatePassword'])->name('participant.update-password');
     Route::get("/participant/{id}/delete", [ParticipantController::class, 'destroy'])->name('participant.delete');
     Route::get("/participant/{id}/logout", [ParticipantController::class, 'logout'])->name('participant.logout');
+    Route::get("/participant/{id}/reset", [ParticipantResetController::class, 'resetOne'])->name('participant.reset-one');
+
+    Route::get("/reset/participant", [ParticipantResetController::class, 'reset'])->name('participant.reset');
+    Route::post("/import/participant", [ParticipantImportController::class, 'import'])->name('participant.import');
 
     Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
     Route::get("/monitoring/{id}", [MonitorController::class, "pantau"])->name('monitor.pantau');

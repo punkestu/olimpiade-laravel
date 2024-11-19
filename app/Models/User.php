@@ -31,7 +31,10 @@ class User extends Authenticatable
         'finish',
         'poin',
         'is_login',
-        'sent_email'
+        'sent_email',
+        'asal_sekolah',
+        'kelas',
+        'nomor_hp',
     ];
 
     /**
