@@ -107,7 +107,7 @@
                                     {{ $participant->olimpiade->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $participant->point->sum('poin') }}
+                                    {{ $participant->point->sum('poin') - $participant->minusPoint->count() }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex justify-center gap-2">
                                     <a href="{{ route('participant.show', $participant->id) }}"

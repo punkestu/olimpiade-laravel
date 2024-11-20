@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Answer::class)->join('questions', 'question_id', '=', 'questions.id')->where('questions.correct_answer', FacadesDB::raw('answers.answer'));
     }
 
+    public function minusPoint()
+    {
+        return $this->hasMany(Answer::class)->join('questions', 'question_id', '=', 'questions.id')->where('questions.correct_answer', '!=', FacadesDB::raw('answers.answer'));
+    }
+
     public function monitors()
     {
         return $this->hasMany(Monitor::class);
