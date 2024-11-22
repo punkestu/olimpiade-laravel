@@ -99,7 +99,26 @@
                 </button>
                 <div id="tooltip-addformula" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Tambah Foto
+                    Tambah Formula
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <button id="tableController" data-tooltip-target="tooltip-tablecontroller" type="button"
+                    data-modal-target="{{ $nameModal }}-table-modal"
+                    data-modal-toggle="{{ $nameModal }}-table-modal"
+                    class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M13 10a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2H14a1 1 0 0 1-1-1Z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12c0 .556-.227 1.06-.593 1.422A.999.999 0 0 1 20.5 20H4a2.002 2.002 0 0 1-2-2V6Zm6.892 12 3.833-5.356-3.99-4.322a1 1 0 0 0-1.549.097L4 12.879V6h16v9.95l-3.257-3.619a1 1 0 0 0-1.557.088L11.2 18H8.892Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Tabel</span>
+                </button>
+                <div id="tooltip-tablecontroller" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Tabel
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
             </div>
@@ -107,11 +126,12 @@
     </div>
     <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
         <div id="editor"
-            class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+            class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap">
         </div>
     </div>
     <input type="hidden" id="formula-buffer">
     <input type="hidden" name="{{ $name }}" id="editor-content" value="{{ isset($value) ? $value : '' }}">
     <div id="class" hidden>{{ isset($class) ? $class : '' }}</div>
     @include('components.uploadimage', ['name' => $nameModal])
+    @include('components.tablecont', ['name' => $nameModal])
 </div>
