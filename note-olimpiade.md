@@ -22,3 +22,4 @@
 - [x] tombol hapus olimpiade
 - [ ] tombol untuk urutkan nomor soal
 - [ ] tambah konfirmasi yang lebih baik untuk perintah berbahaya
+- [ ] tambah tombol share hasil nilai

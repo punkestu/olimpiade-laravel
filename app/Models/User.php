@@ -54,18 +54,17 @@ class User extends Authenticatable
 
     public function point()
     {
-        /*return FacadesDB::table('answers')
-            ->select(FacadesDB::raw('COALESCE(SUM(poin), 0) as total'))
-            ->join('questions', 'answers.question_id', '=', 'questions.id')
-            ->where('user_id', $this->id)
-            ->where('correct_answer', "=", 'answer')
-            ->first();*/
         return $this->hasMany(Answer::class)->join('questions', 'question_id', '=', 'questions.id')->where('questions.correct_answer', FacadesDB::raw('answers.answer'));
     }
 
     public function minusPoint()
     {
         return $this->hasMany(Answer::class)->join('questions', 'question_id', '=', 'questions.id')->where('questions.correct_answer', '!=', FacadesDB::raw('answers.answer'));
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 
     public function monitors()

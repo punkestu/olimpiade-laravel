@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Olimpiade;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -51,8 +52,14 @@ class ParticipantController extends Controller
 
     public function show($id)
     {
-        $participant = User::find($id);
-        return view('admin.participant.show', compact('participant'));
+        $participant = User::with(["olimpiade"])->find($id);
+        $questions = Question::where('olimpiade_id', $participant->olimpiade_id)->get();
+        $answers = $participant->answers;
+        $questions = $questions->map(function ($question) use ($answers) {
+            $question->answer = $answers ? $answers->where('question_id', $question->id)->first() : null;
+            return $question;
+        });
+        return view('admin.participant.show', compact('participant', 'questions'));
     }
 
     public function changePassword($id)

@@ -35,7 +35,8 @@
                     </div>
                     <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Asal Sekolah</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $participant->asal_sekolah ?? "-" }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $participant->asal_sekolah ?? '-' }}
+                        </dd>
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Kelas</dt>
@@ -43,10 +44,27 @@
                     </div>
                     <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Nilai</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">0</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            {{ $participant->point->sum('poin') - $participant->minusPoint->count() }}</dd>
                     </div>
                 </dl>
             </div>
+        </div>
+        <h1 class="mt-4">List Jawaban</h1>
+        <div class="grid grid-cols-6 md:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12 gap-2 mt-2">
+            @foreach ($questions as $question)
+                @php
+                    $correct = $question->answer && $question->answer->answer == $question->correct_answer;
+                @endphp
+                <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+                    <div class="px-4 py-5 sm:px-6 flex flex-col items-center {{ $correct ? 'bg-blue-500' : '' }}">
+                        <h3 class="text-lg font-medium leading-6 {{ $correct ? 'text-white' : 'text-gray-900' }}">
+                            {{ $loop->iteration }}</h3>
+                        <p class="mt-1 max-w-2xl text-sm {{ $correct ? 'text-white' : 'text-gray-500' }}">
+                            {{ $question->answer ? ['', 'A', 'B', 'C', 'D'][$question->answer->answer] : '-' }}</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </main>
 </x-layout>
