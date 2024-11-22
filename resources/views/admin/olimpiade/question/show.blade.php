@@ -21,7 +21,7 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
-                <div id="question">
+                <div id="question" class="[&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt quae earum quam. Unde, cum alias!
                 </div>
                 <ul class="flex flex-col gap-2 [&_li]:flex [&_li]:items-center [&_li]:gap-1">
