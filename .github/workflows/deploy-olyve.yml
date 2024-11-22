@@ -20,7 +20,6 @@ jobs:
             cd repositories/olimpiade-laravel
             git pull origin prod-olyve
             git checkout prod-olyve
-            composer install
             npm install
             php artisan migrate
             npm run build
