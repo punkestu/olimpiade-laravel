@@ -22,21 +22,21 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <div id="question"
-                    class="[&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
+                    class="[&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt quae earum quam. Unde, cum alias!
                 </div>
                 <ul class="flex flex-col gap-2 [&_li]:flex [&_li]:items-center">
                     <li id="answer1"
-                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
+                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
                         a. Lorem ipsum dolor sit amet.</li>
                     <li id="answer2"
-                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
+                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
                         b. Lorem ipsum dolor sit amet.</li>
                     <li id="answer3"
-                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
+                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
                         c. Lorem ipsum dolor sit amet.</li>
                     <li id="answer4"
-                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
+                        class=" [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
                         d. Lorem ipsum dolor sit amet.</li>
                 </ul>
             </div>
