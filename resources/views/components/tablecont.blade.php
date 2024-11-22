@@ -18,16 +18,21 @@
                 </button>
             </div>
             <div class="p-4 md:p-5">
-                <div>
-                    <button id="add-table" type="button" data-modal-hide="{{ $name }}-table-modal">Buat
+                <div class="flex flex-wrap gap-2">
+                    <button id="add-table" type="button" data-modal-hide="{{ $name }}-table-modal"
+                        class="border bg-gray-200">Buat
                         Tabel</button>
-                    <button id="add-column" type="button" data-modal-hide="{{ $name }}-table-modal">Tambah
+                    <button id="add-column" type="button" data-modal-hide="{{ $name }}-table-modal"
+                        class="border bg-gray-200">Tambah
                         Kolom</button>
-                    <button id="del-column" type="button" data-modal-hide="{{ $name }}-table-modal">Hapus
+                    <button id="del-column" type="button" data-modal-hide="{{ $name }}-table-modal"
+                        class="border bg-gray-200">Hapus
                         Kolom</button>
-                    <button id="add-row" type="button" data-modal-hide="{{ $name }}-table-modal">Tambah
+                    <button id="add-row" type="button" data-modal-hide="{{ $name }}-table-modal"
+                        class="border bg-gray-200">Tambah
                         Baris</button>
-                    <button id="del-row" type="button" data-modal-hide="{{ $name }}-table-modal">Hapus
+                    <button id="del-row" type="button" data-modal-hide="{{ $name }}-table-modal"
+                        class="border bg-gray-200">Hapus
                         Baris</button>
                 </div>
             </div>

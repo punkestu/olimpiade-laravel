@@ -76,7 +76,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div
-                                        class="max-h-[3.5rem] overflow-y-hidden [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_td]:break-words">
+                                        class="max-h-[3.5rem] overflow-y-hidden [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_td]:break-words">
                                         {!! $question->question !!}
                                     </div>
                                 </td>
