@@ -93,6 +93,7 @@ class AnswerController extends Controller
     {
         $user = User::find(Auth::id());
         $user->finish = true;
+        $user->finish_time = Carbon::now('Asia/Jakarta');
         $user->save();
         return response()->json([
             "code" => 200,

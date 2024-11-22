@@ -18,10 +18,11 @@ class PointExportController extends Controller
             'Nama',
             'Asal Sekolah',
             'Kelas',
-            'Poin'
+            'Poin',
+            'Waktu Submit'
         ]];
         foreach ($participants as $participant) {
-            $points[] = [$participant->name, $participant->asal_sekolah, $participant->kelas, $participant->point->count() > 0 ? $participant->point->sum('poin') - $participant->minusPoint->count() : "0"];
+            $points[] = [$participant->name, $participant->asal_sekolah, $participant->kelas, $participant->point->count() > 0 ? $participant->point->sum('poin') - $participant->minusPoint->count() : "0", $participant->finish_time ?? "Kehabisan waktu"];
         }
 
         return Excel::download(new PointExport($points), $filename);

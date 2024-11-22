@@ -47,6 +47,10 @@
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                             {{ $participant->point->sum('poin') - $participant->minusPoint->count() }}</dd>
                     </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Waktu Submit</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $participant->finish_time }}</dd>
+                    </div>
                 </dl>
             </div>
         </div>
