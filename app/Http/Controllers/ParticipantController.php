@@ -34,12 +34,16 @@ class ParticipantController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'asal_sekolah' => 'required',
+            'kelas' => 'required',
             'email' => 'required|email',
             'olimpiade_id' => 'required',
         ]);
 
         $participant = new User();
         $participant->name = $request->name;
+        $participant->asal_sekolah = $request->asal_sekolah;
+        $participant->kelas = $request->kelas;
         $participant->email = $request->email;
         $participant->olimpiade_id = $request->olimpiade_id;
         $participant->password = bcrypt("secret1234");

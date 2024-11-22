@@ -22,6 +22,22 @@
                             </dd>
                         </div>
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Asal Sekolah</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                                <input type="text" name="asal_sekolah" id="asal_sekolah"
+                                    class="block w-full px-3 py-2.5 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+                                    required>
+                            </dd>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Kelas</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                                <input type="text" name="kelas" id="kelas"
+                                    class="block w-full px-3 py-2.5 mt-1 text-gray-900 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+                                    required>
+                            </dd>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Email</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 <input type="email" name="email" id="email"
