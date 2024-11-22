@@ -2,10 +2,11 @@ import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import { Image } from "@tiptap/extension-image";
 import { MathExtension } from "@aarkue/tiptap-math-extension";
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import TextAlign from "@tiptap/extension-text-align";
 import katex from "katex";
 
 import "katex/dist/katex.min.css";
@@ -61,6 +62,9 @@ export function initRichText() {
                 TableRow,
                 TableHeader,
                 TableCell,
+                TextAlign.configure({
+                    types: ["heading", "paragraph"],
+                }),
                 MathExtension.configure({
                     inlineMath: {
                         delimiters: [
@@ -147,6 +151,12 @@ export function initRichText() {
         });
         element.querySelector("#del-column").addEventListener("click", () => {
             editor.chain().focus().deleteColumn().run();
+        });
+        element.querySelector("#alg-center").addEventListener("click", () => {
+            editor.chain().focus().setTextAlign('center').run();
+        });
+        element.querySelector("#alg-justify").addEventListener("click", () => {
+            editor.chain().focus().setTextAlign('justify').run();
         });
         editor.on("update", () => {
             const isEmpty =
