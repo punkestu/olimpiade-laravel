@@ -2,7 +2,7 @@
     <x-slot:title>Peserta</x-slot:title>
     <main class="p-4 sm:ml-64">
         <div class="relative">
-            <div class="pb-4 flex flex-col md:flex-row justify-between items-end gap-2">
+            <div class="pb-4 flex flex-col justify-between items-start gap-2">
                 <div class="bg-white dark:bg-gray-900 w-full md:w-auto">
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
@@ -18,10 +18,10 @@
                             placeholder="Search for items" onkeyup="searchParticipant(this)">
                     </div>
                 </div>
-                <div class="flex gap-2">
+                <div class="flex gap-2 overflow-x-auto w-full">
                     <a href="{{ route('participant.reset') }}"
                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 flex items-center text-center">
-                        <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden" aria-hidden="true"
+                        <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -56,9 +56,19 @@
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01" />
+                                d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
                         </svg>
                         Import</button>
+                    <button data-modal-target="exportNilai" data-modal-toggle="exportNilai"
+                        class="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01" />
+                        </svg>
+                        Export Nilai
+                    </button>
                     <button data-modal-target="selectOlimpiade" data-modal-toggle="selectOlimpiade"
                         class="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
@@ -216,6 +226,46 @@
                         @foreach ($olimpiades as $olimpiade)
                             <li>
                                 <a href="{{ route('participant', ['olimpiade=' . $olimpiade->id]) }}"
+                                    class="inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-semibold">{{ $olimpiade->name }}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="exportNilai" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Pilih Olimpiade
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="exportNilai">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4 h-[50vh] overflow-y-auto">
+                    <ul class="space-y-4 mb-4">
+                        @foreach ($olimpiades as $olimpiade)
+                            <li>
+                                <a href="{{ route('point.export', $olimpiade->id) }}"
                                     class="inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">
                                     <div class="block">
                                         <div class="w-full text-lg font-semibold">{{ $olimpiade->name }}</div>

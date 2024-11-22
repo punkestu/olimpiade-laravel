@@ -8,6 +8,7 @@ use App\Http\Controllers\OlimpiadeController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ParticipantImportController;
 use App\Http\Controllers\ParticipantResetController;
+use App\Http\Controllers\PointExportController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SettingController;
@@ -73,6 +74,7 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
 
     Route::get("/reset/participant", [ParticipantResetController::class, 'reset'])->name('participant.reset');
     Route::post("/import/participant", [ParticipantImportController::class, 'import'])->name('participant.import');
+    Route::get("/export/point/{id}", [PointExportController::class, 'export'])->name('point.export');
 
     Route::get("/monitoring", [MonitorController::class, "index"])->name('monitor');
     Route::get("/monitoring/{id}", [MonitorController::class, "pantau"])->name('monitor.pantau');
