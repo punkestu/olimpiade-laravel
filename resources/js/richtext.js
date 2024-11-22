@@ -115,7 +115,7 @@ export function initRichText() {
                 .focus()
                 .setImage({
                     src: `/storage/${path}`,
-                    width: "50%",
+                    width: "80%",
                 })
                 .run();
         });

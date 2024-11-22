@@ -64,10 +64,10 @@
         </div>
     </div>
     <main class="px-8 py-4 h-[88vh] flex items-center justify-center">
-        <img src="/image/background/dashboard.jpg" alt="dashboard image"
-            class="opacity-50 object-cover w-full h-full rounded-md blur-md">
+        <img src="{{ $olimpiade->thumbnail ? '/image/background/dashboard.jpg' : '/storage/' . $olimpiade->image }}"
+            alt="dashboard image" class="opacity-50 object-cover w-full h-full rounded-md blur-md">
         <div class="absolute flex flex-col items-center justify-center gap-4">
-            <h2 class="text-5xl font-bold flex items-center gap-2 underline">
+            <h2 class="text-5xl font-bold flex items-center text-center gap-2 underline">
                 {{ $olimpiade->name }}
             </h2>
             @if ($now->gt($olimpiade->end_date) || auth()->user()->finish)
