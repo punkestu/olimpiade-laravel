@@ -21,13 +21,13 @@
             <div class="flex md:hidden justify-end">
                 <p>Sisa waktu: <span id="timer">01:30</span></p>
             </div>
-            <h5 id="question" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap"></h5>
+            <h5 id="question" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_*]:mb-2"></h5>
             <ul class="font-normal text-gray-700 dark:text-gray-400 flex flex-col gap-2">
                 <li class="flex items-center gap-2">
                     <input type="radio" name="answer" id="answer1" class="hidden peer/answer"
                         onchange="setAnswer(1)">
                     <label for="answer1" id="answer1-content"
-                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap">
+                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_*]:mb-2">
                         <span id="sym"
                             class="w-8 aspect-square flex items-center justify-center rounded-sm">A</span>
                         <span id="content"></span>
@@ -37,7 +37,7 @@
                     <input type="radio" name="answer" id="answer2" class="hidden peer/answer"
                         onchange="setAnswer(2)">
                     <label for="answer2" id="answer2-content"
-                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full  [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap">
+                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full  [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_*]:mb-2">
                         <span id="sym"
                             class="bg-gray-300 w-8 aspect-square flex items-center justify-center rounded-sm">B</span>
                         <span id="content"></span>
@@ -47,7 +47,7 @@
                     <input type="radio" name="answer" id="answer3" class="hidden peer/answer"
                         onchange="setAnswer(3)">
                     <label for="answer3" id="answer3-content"
-                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full  [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap">
+                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full  [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_*]:mb-2">
                         <span id="sym"
                             class="bg-gray-300 w-8 aspect-square flex items-center justify-center rounded-sm">C</span>
                         <span id="content"></span>
@@ -57,7 +57,7 @@
                     <input type="radio" name="answer" id="answer4" class="hidden peer/answer"
                         onchange="setAnswer(4)">
                     <label for="answer4" id="answer4-content"
-                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap">
+                        class="p-1 rounded-md border-2 peer-checked/answer:border-blue-400 [&_#sym]:bg-gray-300 peer-checked/answer:[&_#sym]:bg-blue-400 peer-checked/answer:[&_#sym]:text-white flex items-center gap-2 w-full [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4 [&_*]:text-wrap [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_*]:mb-2">
                         <span id="sym"
                             class="bg-gray-300 w-8 aspect-square flex items-center justify-center rounded-sm">D</span>
                         <span id="content"></span>
