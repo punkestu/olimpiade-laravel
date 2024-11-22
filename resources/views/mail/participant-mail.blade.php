@@ -1,7 +1,7 @@
 <x-mail::message>
-# Introduction
+# Eduventure
 
-The body of your message.
+Berikut adalah informasi login untuk peserta {{ $participant->name }}:
 
 Nama : {{ $participant->name }}
 

@@ -38,7 +38,7 @@ class ParticipantImport implements ToModel, WithHeadingRow, WithValidation
             'olimpiade_id'  => $this->olimpiade->id,
             'asal_sekolah'  => $row['asal_sekolah'],
             'kelas'         => $row['kelas'],
-            'nomor_hp'      => $row['nomor_handphone'],
+            'nomor_hp'      => "-",
         ]);
     }
 
