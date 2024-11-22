@@ -21,7 +21,9 @@
             <div class="flex md:hidden justify-end">
                 <p>Sisa waktu: <span id="timer">01:30</span></p>
             </div>
-            <h5 id="question" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  "></h5>
+            <h5 id="question"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap  ">
+            </h5>
             <ul class="font-normal text-gray-700 dark:text-gray-400 flex flex-col gap-2">
                 <li class="flex items-center gap-2">
                     <input type="radio" name="answer" id="answer1" class="hidden peer/answer"
@@ -240,6 +242,7 @@
             }).then(res => res.json()).then(res => {
                 localStorage.setItem("API_TOKEN", res.data.token);
                 token = res.data.token;
+                getServerTime().then();
             });
         }
 
@@ -329,18 +332,35 @@
         var endTime = new Date('{{ $end_time }}').getTime();
         const duration = endTime - startTime;
         var checking = false;
-        setInterval(() => {
-            if (new Date().getTime() > endTime) {
-                if (!checking) {
-                    recheckTime();
+        var timeRemaining;
+        var serverTime;
+
+        async function getServerTime() {
+            fetch("/api/current_time", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
-            } else {
-                setTimer();
+            }).then(res => res.json()).then(res => {
+                if (res.code === 200) {
+                    timeRemaining = endTime - new Date(res.data.time).getTime();
+                }
+            });
+        }
+        setInterval(() => {
+            if (timeRemaining) {
+                if (timeRemaining < 0) {
+                    if (!checking) {
+                        recheckTime();
+                    }
+                } else {
+                    setTimer();
+                }
             }
         }, 1000);
 
         function setTimer() {
-            const timeRemaining = endTime - new Date().getTime();
+            if(!timeRemaining) return;
+            timeRemaining = timeRemaining - 1000;
             const percentage = (timeRemaining / duration) * 100;
             const offset = 251.2 - (251.2 * (percentage)) / 100;
             document.querySelector("#radial-timer > #outer").setAttribute("stroke-dashoffset", offset);

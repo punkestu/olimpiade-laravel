@@ -42,6 +42,16 @@ class AnswerController extends Controller
         ]);
     }
 
+    public function serverTime()
+    {
+        return response()->json([
+            "code" => 200,
+            "data" => [
+                "time" => Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s')
+            ]
+        ]);
+    }
+
     public function submit(Request $request)
     {
         if (Auth::user()->finish) {
