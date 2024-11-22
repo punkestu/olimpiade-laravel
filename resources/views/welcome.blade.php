@@ -9,7 +9,7 @@
     <main class="py-4">
         <section class="px-8 flex justify-center items-center gap-8">
             <div class="flex-grow h-[80vh] flex justify-center items-center">
-                <img src="/image/background/dashboard.jpg" alt="dashboard image"
+                <img src="/image/background/dashboard.png" alt="dashboard image"
                     class="opacity-50 object-cover w-full h-full rounded-md">
             </div>
             <a href="{{ route('login') }}"

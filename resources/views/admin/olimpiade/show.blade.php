@@ -3,7 +3,7 @@
     <main class="p-4 sm:ml-64">
         <div class="w-full h-[30vh]">
             <img class="w-full h-full object-cover"
-                src="{{ $olimpiade->image == '' ? '/image/background/dashboard.jpg' : asset('storage/' . $olimpiade->image) }}"
+                src="{{ $olimpiade->image == '' ? '/image/background/dashboard.png' : asset('storage/' . $olimpiade->image) }}"
                 alt="{{ $olimpiade->name }}">
         </div>
         <h1 class="mt-2 text-5xl font-bold">{{ $olimpiade->name }}</h1>
