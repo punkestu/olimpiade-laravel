@@ -1,6 +1,6 @@
 @php
     $random = str()->random(5);
-    $modalName = $name . $random . "-richtext";
+    $modalName = $name . $random . '-richtext';
 @endphp
 <div id="{{ $modalName }}"
     class="wysiwyg w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
@@ -99,19 +99,65 @@
                 </button>
                 <div id="tooltip-addformula" role="tooltip"
                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Tambah Foto
+                    Tambah Formula
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
+                <button id="tableController" data-tooltip-target="tooltip-tablecontroller" type="button"
+                    data-modal-target="{{ $nameModal }}-table-modal"
+                    data-modal-toggle="{{ $nameModal }}-table-modal"
+                    class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-width="2"
+                            d="M3 11h18M3 15h18M8 10.792V19m4-8.208V19m4-8.208V19M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
+                    </svg>
+                    <span class="sr-only">Tabel</span>
+                </button>
+                <div id="tooltip-tablecontroller" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Tabel
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <button id="alg-center" data-tooltip-target="tooltip-aligncenter" type="button"
+                    class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 6h8M6 10h12M8 14h8M6 18h12" />
+                    </svg>
+                    <span class="sr-only">Center</span>
+                </button>
+                <div id="tooltip-aligncenter" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Center
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <button id="alg-justify" data-tooltip-target="tooltip-alignjustify" type="button"
+                    class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M18 6H6m12 4H6m12 4H6m12 4H6" />
+                    </svg>
+                    <span class="sr-only">Justify</span>
+                </button>
+                <div id="tooltip-alignjustify" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Justify
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+
             </div>
         </div>
     </div>
     <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
         <div id="editor"
-            class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+            class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_td]:max-w-[40%] [&_th]:max-w-[40%] [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap">
         </div>
     </div>
     <input type="hidden" id="formula-buffer">
     <input type="hidden" name="{{ $name }}" id="editor-content" value="{{ isset($value) ? $value : '' }}">
     <div id="class" hidden>{{ isset($class) ? $class : '' }}</div>
     @include('components.uploadimage', ['name' => $nameModal])
+    @include('components.tablecont', ['name' => $nameModal])
 </div>

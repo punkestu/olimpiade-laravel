@@ -1,0 +1,24 @@
+name: CD
+run-name: Running deployment 🚀
+on:
+  push:
+    branches: [prod-olyve]
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.OLYVE_HOST }}
+          username: ${{ secrets.OLYVE_USERNAME }}
+          key: ${{ secrets.OLYVE_SECRET }}
+          port: ${{ secrets.OLYVE_PORT }}
+          passphrase: ${{ secrets.OLYVE_PASSPHRASE }}
+          script: |
+            cd repositories/olimpiade-laravel
+            git pull origin prod-olyve
+            git checkout prod-olyve
+            php artisan migrate
+            npm run build
