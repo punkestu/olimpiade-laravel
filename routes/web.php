@@ -44,7 +44,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/reveal-login-id/{id}', [RegisterController::class, 'revealLoginID'])->name('reveal-login-id');
 });
 
-Route::get('/questions/{id}', [QuestionExportController::class, 'questions'])->name('questions');
 
 Route::group(['middleware' => ['auth', 'isLogin']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
@@ -65,7 +64,8 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
 
     Route::post("/question/{question_id}/update", [QuestionController::class, 'update'])->name('question.update');
     Route::get("/question/{question_id}/delete", [QuestionController::class, 'destroy'])->name('question.delete');
-    Route::get('/question/export/{id}', [QuestionExportController::class, 'exportPdf'])->name('questions.pdf');
+    //Route::get('/question/export/{id}', [QuestionExportController::class, 'exportPdf'])->name('questions.pdf');
+    Route::get('/questions/{id}', [QuestionExportController::class, 'questions'])->name('questions');
 
     Route::get("/participant", [ParticipantController::class, 'index'])->name('participant');
     Route::get("/participant/create", [ParticipantController::class, 'create'])->name('participant.create');
