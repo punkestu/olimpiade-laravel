@@ -120,6 +120,11 @@
                                                     Edit</a>
                                             </li>
                                             <li>
+                                                <a href="{{ route('questions.pdf', $olimpiade->id) }}"
+                                                    class="text-start w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Export Soal</a>
+                                            </li>
+                                            <li>
                                                 <a href="{{ route('olimpiade.delete', $olimpiade->id) }}"
                                                     class="text-start w-full block px-4 py-2
                                                     text-red-600 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">
