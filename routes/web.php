@@ -10,6 +10,7 @@ use App\Http\Controllers\ParticipantImportController;
 use App\Http\Controllers\ParticipantResetController;
 use App\Http\Controllers\PointExportController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuestionExportController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SettingController;
 use App\Models\User;
@@ -55,12 +56,14 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
         Auth::logout();
         return redirect()->route('welcome');
     })->name('logout');
+
     Route::resource('olimpiade', OlimpiadeController::class, ['names' => 'olimpiade']);
     Route::get('/olimpiade/{id}/delete', [OlimpiadeController::class, 'destroy'])->name('olimpiade.delete');
     Route::resource('question', QuestionController::class, ['only' => ['store'], 'names' => 'question', 'parameters' => ['question.store' => 'olimpiade_id']]);
 
     Route::post("/question/{question_id}/update", [QuestionController::class, 'update'])->name('question.update');
     Route::get("/question/{question_id}/delete", [QuestionController::class, 'destroy'])->name('question.delete');
+    Route::get('/question/export', [QuestionExportController::class, 'exportPdf'])->name('questions.pdf');
 
     Route::get("/participant", [ParticipantController::class, 'index'])->name('participant');
     Route::get("/participant/create", [ParticipantController::class, 'create'])->name('participant.create');
