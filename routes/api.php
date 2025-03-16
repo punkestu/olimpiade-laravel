@@ -17,6 +17,7 @@ Route::post("/requesttoken", [LoginController::class, "getToken"])->name("reques
 Route::group(["middleware" => ["auth:sanctum", "isLogin"]], function () {
     Route::post("/monitor", [MonitorController::class, "listen"]);
     Route::get("/time", [AnswerController::class, "peekExpandTime"]);
+    Route::get("/current_time", [AnswerController::class, "serverTime"]);
     Route::get("/finish", [AnswerController::class, "finish"]);
     Route::post("/answer", [AnswerController::class, "submit"]);
     Route::post("/image/upload", [ImageController::class, "store"]);

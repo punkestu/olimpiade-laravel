@@ -2,7 +2,7 @@
     <x-slot:title>Peserta</x-slot:title>
     <main class="p-4 sm:ml-64">
         <div class="relative">
-            <div class="pb-4 flex flex-col md:flex-row justify-between items-end gap-2">
+            <div class="pb-4 flex flex-col justify-between items-start gap-2">
                 <div class="bg-white dark:bg-gray-900 w-full md:w-auto">
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
@@ -18,7 +18,27 @@
                             placeholder="Search for items" onkeyup="searchParticipant(this)">
                     </div>
                 </div>
-                <div class="flex gap-2">
+                <div class="flex gap-2 overflow-x-auto w-full">
+                    <a href="{{ route('participant.reset') }}"
+                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 flex items-center text-center">
+                        <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Reset
+                    </a>
+                    <button data-modal-target="selectOlimpiadeMail" data-modal-toggle="selectOlimpiadeMail"
+                        class="flex items-center gap-1 text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-500 dark:hover:bg-green-600 focus:outline-none dark:focus:ring-green-500">
+                        <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
+                        </svg>
+                        Kirim Email</button>
                     <a href="{{ route('participant.create') }}"
                         class="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         <svg class="w-5 h-5 text-white dark:text-gray-800" aria-hidden="true"
@@ -30,15 +50,25 @@
                         </svg>
                         Tambah
                     </a>
-                    <button data-modal-target="selectOlimpiadeMail" data-modal-toggle="selectOlimpiadeMail"
-                        class="flex items-center gap-1 text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-500 dark:hover:bg-green-600 focus:outline-none dark:focus:ring-green-500">
+                    <button data-modal-target="importParticipant" data-modal-toggle="importParticipant"
+                        class="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
                         </svg>
-                        Kirim Email</button>
+                        Import</button>
+                    <button data-modal-target="exportNilai" data-modal-toggle="exportNilai"
+                        class="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01" />
+                        </svg>
+                        Export Nilai
+                    </button>
                     <button data-modal-target="selectOlimpiade" data-modal-toggle="selectOlimpiade"
                         class="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
@@ -87,7 +117,7 @@
                                     {{ $participant->olimpiade->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $participant->point->sum('poin') }}
+                                    {{ $participant->point->sum('poin') - $participant->minusPoint->count() }}
                                 </td>
                                 <td class="px-6 py-4 text-right flex justify-center gap-2">
                                     <a href="{{ route('participant.show', $participant->id) }}"
@@ -101,51 +131,56 @@
                                                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
                                         Detail</a>
-                                    <button onclick="mail('{{ $participant->id }}')"
-                                        class="focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-green-900 flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden"
-                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                                d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
-                                        </svg>
-                                        Email</button>
-                                    <a href="{{ route('participant.change-password', $participant->id) }}"
-                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden"
-                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" fill="none" viewBox="0 0 24 24">
+
+                                    <button id="{{ $participant->id }}-dropdown-button"
+                                        data-dropdown-toggle="{{ $participant->id }}-dropdown"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex items-center text-center"
+                                        type="button">Lainnya <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                             <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                                         </svg>
-                                        Ganti Password</a>
-                                    <button data-modal-target="hapus-confirmation-modal"
-                                        data-modal-toggle="hapus-confirmation-modal"
-                                        onclick="setDeleteUrl({{ $participant->id }})"
-                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900  flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden"
-                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
-                                        </svg>
-                                        Hapus
                                     </button>
-                                    <button data-modal-target="logout-confirmation-modal"
-                                        data-modal-toggle="logout-confirmation-modal"
-                                        onclick="setLogoutUrl({{ $participant->id }})"
-                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900  flex items-center text-center">
-                                        <svg class="w-5 h-5 text-white dark:text-gray-800 xl:block hidden"
-                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" fill="currentColor" viewBox="0 0 24 24">
-                                            <path fill-rule="evenodd"
-                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        Logout
-                                    </button>
+
+                                    <div id="{{ $participant->id }}-dropdown"
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                            aria-labelledby="{{ $participant->id }}-dropdown-button">
+                                            <li>
+                                                <button onclick="mail('{{ $participant->id }}')"
+                                                    class="text-start w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Kirim Email</button>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('participant.change-password', $participant->id) }}"
+                                                    class="text-start w-full block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Ganti Password</a>
+                                            </li>
+                                            <li>
+                                                <button data-modal-target="hapus-confirmation-modal"
+                                                    data-modal-toggle="hapus-confirmation-modal"
+                                                    onclick="setDeleteUrl({{ $participant->id }})"
+                                                    class="text-start w-full block px-4 py-2 text-red-600 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">
+                                                    Hapus
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button data-modal-target="logout-confirmation-modal"
+                                                    data-modal-toggle="logout-confirmation-modal"
+                                                    onclick="setLogoutUrl({{ $participant->id }})"
+                                                    class="text-start w-full block px-4 py-2  text-red-600 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">
+                                                    Logout
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('participant.reset-one', $participant->id) }}"
+                                                    class="text-start w-full block px-4 py-2
+                                                    text-red-600 hover:bg-red-100 dark:hover:bg-red-600 dark:hover:text-white">
+                                                    Reset
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -200,6 +235,100 @@
                         @endforeach
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="exportNilai" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Pilih Olimpiade
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="exportNilai">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4 h-[50vh] overflow-y-auto">
+                    <ul class="space-y-4 mb-4">
+                        @foreach ($olimpiades as $olimpiade)
+                            <li>
+                                <a href="{{ route('point.export', $olimpiade->id) }}"
+                                    class="inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-semibold">{{ $olimpiade->name }}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="importParticipant" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Import Peserta
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="importParticipant">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form action="{{ route('participant.import') }}" method="POST" enctype="multipart/form-data"
+                    class="p-4 md:p-5 space-y-4 overflow-y-auto">
+                    @csrf
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        for="participant_sheet">Upload file</label>
+                    <input
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        id="participant_sheet" name="participant_sheet" type="file">
+                    <label for="olimpiade_id"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+                    <select id="olimpiade_id" name="olimpiade_id"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Pilih Kategori</option>
+                        @foreach ($olimpiades as $olimpiade)
+                            <option value="{{ $olimpiade->id }}">{{ $olimpiade->name }}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit"
+                        class="w-full flex justify-center items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <svg class="w-6 h-6 text-white dark:text-gray-800" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01" />
+                        </svg>
+                        Import</button>
+                </form>
             </div>
         </div>
     </div>
@@ -338,6 +467,7 @@
         </div>
     </div>
     @include('components.success')
+    @include('components.errors')
     <script>
         function searchParticipant(element) {
             const query = element.value.toLowerCase();

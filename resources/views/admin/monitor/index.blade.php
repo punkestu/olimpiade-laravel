@@ -15,7 +15,7 @@
                         </div>
                         <input type="text" id="table-search"
                             class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for items" onkeyup="searchOlimpiade(this)">
+                            placeholder="Search for items" onkeyup="searchParticipant(this)">
                     </div>
                 </div>
             </div>
@@ -23,6 +23,9 @@
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Nama
+                            </th>
                             <th scope="col" class="px-6 py-3">
                                 ID
                             </th>
@@ -46,6 +49,9 @@
                                 @continue
                             @endif
                             <tr>
+                                <td class="px-6 py-3">
+                                    {{ $user->name }}
+                                </td>
                                 <td class="px-6 py-3">
                                     {{ $user->login_id }}
                                 </td>
@@ -92,4 +98,22 @@
             @endif
         </div>
     </main>
+    <script>
+        function searchParticipant(element) {
+            var value = element.value.toLowerCase();
+            var rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                var name = row.children[0].textContent.toLowerCase();
+                var id = row.children[1].textContent.toLowerCase();
+                var olimpiade = row.children[2].textContent.toLowerCase();
+
+                if (name.includes(value) || id.includes(value) || olimpiade.includes(value)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </x-layout>

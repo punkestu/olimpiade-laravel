@@ -3,7 +3,7 @@
     <main class="p-4 sm:ml-64">
         <div class="w-full h-[30vh]">
             <img class="w-full h-full object-cover"
-                src="{{ $olimpiade->image == '' ? '/image/background/dashboard.jpg' : asset('storage/' . $olimpiade->image) }}"
+                src="{{ $olimpiade->image == '' ? '/image/background/dashboard.png' : asset('storage/' . $olimpiade->image) }}"
                 alt="{{ $olimpiade->name }}">
         </div>
         <h1 class="mt-2 text-5xl font-bold">{{ $olimpiade->name }}</h1>
@@ -75,7 +75,8 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="max-h-[3.5rem] overflow-y-hidden">
+                                    <div
+                                        class="max-h-[3.5rem] overflow-y-hidden [&_li]:gap-1 [&_ol]:list-decimal [&_ol]:ms-4  [&_table]:border [&_td]:border [&_th]:border [&_td]:p-1 [&_th]:p-1 [&_th]:bg-gray-300 [&_td]:text-wrap [&_th]:text-wrap [&_td]:break-words">
                                         {!! $question->question !!}
                                     </div>
                                 </td>

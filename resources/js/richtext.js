@@ -2,6 +2,11 @@ import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import { Image } from "@tiptap/extension-image";
 import { MathExtension } from "@aarkue/tiptap-math-extension";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import TextAlign from "@tiptap/extension-text-align";
 import katex from "katex";
 
 import "katex/dist/katex.min.css";
@@ -51,6 +56,15 @@ export function initRichText() {
             extensions: [
                 StarterKit,
                 CustomImage,
+                Table.configure({
+                    resizable: true,
+                }),
+                TableRow,
+                TableHeader,
+                TableCell,
+                TextAlign.configure({
+                    types: ["heading", "paragraph"],
+                }),
                 MathExtension.configure({
                     inlineMath: {
                         delimiters: [
@@ -115,9 +129,34 @@ export function initRichText() {
                 .focus()
                 .setImage({
                     src: `/storage/${path}`,
-                    width: "50%",
+                    width: "80%",
                 })
                 .run();
+        });
+        element.querySelector("#add-table").addEventListener("click", () => {
+            editor
+                .chain()
+                .focus()
+                .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+                .run();
+        });
+        element.querySelector("#add-row").addEventListener("click", () => {
+            editor.chain().focus().addRowAfter().run();
+        });
+        element.querySelector("#add-column").addEventListener("click", () => {
+            editor.chain().focus().addColumnAfter().run();
+        });
+        element.querySelector("#del-row").addEventListener("click", () => {
+            editor.chain().focus().deleteRow().run();
+        });
+        element.querySelector("#del-column").addEventListener("click", () => {
+            editor.chain().focus().deleteColumn().run();
+        });
+        element.querySelector("#alg-center").addEventListener("click", () => {
+            editor.chain().focus().setTextAlign('center').run();
+        });
+        element.querySelector("#alg-justify").addEventListener("click", () => {
+            editor.chain().focus().setTextAlign('justify').run();
         });
         editor.on("update", () => {
             const isEmpty =
