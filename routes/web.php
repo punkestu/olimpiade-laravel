@@ -13,6 +13,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuestionExportController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SiteSettingController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -88,6 +89,9 @@ Route::group(['middleware' => ['auth', 'isLogin']], function () {
     Route::get("/setting", [SettingController::class, 'index'])->name('setting');
     Route::get("/setting/change-password", [SettingController::class, 'changePassword'])->name('setting.change-password');
     Route::post("/setting/change-password", [SettingController::class, 'updatePassword'])->name('setting.update-password');
+
+    Route::get("/sitesetting", [SiteSettingController::class, 'index'])->name('sitesetting');
+    Route::post("/sitesetting", [SiteSettingController::class, 'update'])->name('sitesetting.update');
 });
 Route::get("/notifikasi", function () {
     return view('notifikasi');

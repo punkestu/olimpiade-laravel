@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     import("./richtext").then(({ initRichText, setKatex }) => {
         initRichText();
         setKatex();
+        document.dispatchEvent(new CustomEvent('richtext-loaded'));
     });
     import("./monitor").then(({ monitor }) => monitor());
     import("./flatpickr").then(({ initFlatpickr }) => initFlatpickr());

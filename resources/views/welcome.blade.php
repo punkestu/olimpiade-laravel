@@ -3,13 +3,13 @@
     @if (!$errors->any())
         <div id="shade"
             class="absolute top-0 z-[1000] bg-white w-screen h-screen flex items-center justify-center duration-1000">
-            <img src="/image/loading.gif" alt="icon" class="w-64">
+            <img src="{{ $site_settings->olimpiade_loadinglogo }}" alt="icon" class="w-64">
         </div>
     @endif
     <main class="py-4">
         <section class="px-8 flex justify-center items-center gap-8">
             <div class="flex-grow h-[80vh] flex justify-center items-center">
-                <img src="/image/background/dashboard.png" alt="dashboard image"
+                <img src="{{ $site_settings->olimpiade_banner }}" alt="dashboard image"
                     class="object-cover w-full h-full rounded-md">
             </div>
             <a href="{{ route('login') }}"

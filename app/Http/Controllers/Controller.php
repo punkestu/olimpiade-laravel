@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+use App\Models\Setting;
+use Illuminate\Support\Facades\View;
+
+class Controller
 {
-    //
+    protected $site_settings;
+
+    public function __construct() {}
 }

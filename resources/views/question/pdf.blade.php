@@ -48,6 +48,11 @@
                 </ol>
             </div>
         @endforeach
+        <script>
+            document.addEventListener('richtext-loaded', () => {
+                window.print();
+            });
+        </script>
     </main>
 </body>
 
