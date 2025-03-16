@@ -17,7 +17,6 @@ jobs:
           port: ${{ secrets.NYAN_PORT }}
           passphrase: ${{ secrets.NYAN_PASSPHRASE }}
           script: |
-            export NODE_ENV=production
             cd repositories/olimpiade-laravel
             git pull origin main
             git checkout main
